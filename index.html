@@ -6,22 +6,23 @@
 <title>Творческое утро</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg: #F7F5F2;
-    --card: #ffffff;
-    --border: #E8E5E0;
-    --text: #1a1a1a;
-    --text-muted: #888880;
-    --accent: #1a1a1a;
-    --badge-ad: #2d2d2d;
-    --badge-clip: #4a3728;
-    --badge-anim: #2a3d2a;
-    --badge-reels: #1a2a3d;
-    --badge-ai: #3d1a3d;
+    --bg: #0D0A07;
+    --bg2: #130E09;
+    --card: #1A1410;
+    --card2: #211A12;
+    --border: #3A2E1E;
+    --border-gold: #6B4F1E;
+    --text: #F0E8D8;
+    --text-muted: #8A7660;
+    --rust: #C4622D;
+    --gold: #D4A843;
+    --gold2: #A87C2A;
+    --cream: #F0E8D8;
   }
 
   body {
@@ -32,77 +33,153 @@
     min-height: 100vh;
   }
 
-  .container {
-    max-width: 860px;
-    margin: 0 auto;
-    padding: 0 20px 60px;
+  /* Ornamental top border */
+  body::before {
+    content: '';
+    display: block;
+    height: 4px;
+    background: repeating-linear-gradient(
+      90deg,
+      var(--rust) 0px, var(--rust) 8px,
+      var(--gold) 8px, var(--gold) 16px,
+      var(--rust) 16px, var(--rust) 24px,
+      var(--bg) 24px, var(--bg) 28px
+    );
   }
 
+  .container {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  /* ORNAMENT */
+  .orn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 8px 0;
+  }
+  .orn::before, .orn::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-gold), transparent);
+  }
+  .orn-sym {
+    color: var(--gold2);
+    font-size: 0.7rem;
+    letter-spacing: 6px;
+  }
+
+  /* HEADER */
   header {
     padding: 48px 0 32px;
-    border-bottom: 1px solid var(--border);
     margin-bottom: 40px;
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 8px;
+    text-align: center;
+    position: relative;
   }
 
   header h1 {
     font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    font-weight: 600;
-    letter-spacing: -0.02em;
+    font-size: 2.6rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--cream);
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+
+  header h1 span {
+    color: var(--rust);
   }
 
   header .date {
-    font-size: 0.9rem;
+    font-size: 0.78rem;
     color: var(--text-muted);
-    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
   }
 
+  .header-ornament {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin: 16px 0 4px;
+  }
+
+  .header-ornament span {
+    width: 6px;
+    height: 6px;
+    background: var(--rust);
+    transform: rotate(45deg);
+    display: inline-block;
+  }
+
+  .header-ornament span:nth-child(2) {
+    background: var(--gold);
+    width: 8px;
+    height: 8px;
+  }
+
+  /* API KEY */
   .api-key-section {
     background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 20px 24px;
-    margin-bottom: 32px;
+    border-radius: 2px;
+    padding: 16px 20px;
+    margin-bottom: 36px;
     display: flex;
     align-items: center;
     gap: 12px;
     flex-wrap: wrap;
+    position: relative;
+  }
+
+  .api-key-section::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--rust);
   }
 
   .api-key-section label {
-    font-size: 0.85rem;
+    font-size: 0.72rem;
     color: var(--text-muted);
     white-space: nowrap;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
   }
 
   .api-key-section input {
     flex: 1;
     min-width: 200px;
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: 2px;
     padding: 8px 12px;
     font-family: 'Golos Text', sans-serif;
     font-size: 0.85rem;
-    background: var(--bg);
+    background: var(--bg2);
     color: var(--text);
     outline: none;
     transition: border-color 0.2s;
   }
 
-  .api-key-section input:focus { border-color: #aaa; }
+  .api-key-section input:focus { border-color: var(--gold2); }
 
   .api-key-saved {
-    font-size: 0.8rem;
-    color: #5a8a5a;
+    font-size: 0.78rem;
+    color: var(--gold);
     display: none;
+    letter-spacing: 0.06em;
   }
 
-  section { margin-bottom: 40px; }
+  /* SECTION */
+  section { margin-bottom: 48px; }
 
   .section-header {
     display: flex;
@@ -115,116 +192,171 @@
 
   .section-title {
     font-family: 'Playfair Display', serif;
-    font-size: 1.35rem;
-    font-weight: 600;
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--cream);
+  }
+
+  .section-title em {
+    color: var(--rust);
+    font-style: normal;
   }
 
   hr {
     border: none;
-    border-top: 1px solid var(--border);
-    margin: 40px 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-gold) 20%, var(--border-gold) 80%, transparent);
+    margin: 48px 0;
+    position: relative;
   }
 
+  hr::after {
+    content: '◆';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--gold2);
+    font-size: 0.6rem;
+    background: var(--bg);
+    padding: 0 8px;
+  }
+
+  /* CARDS */
   .card {
     background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 12px;
+    border-radius: 2px;
     padding: 24px;
-    transition: border-color 0.2s;
+    position: relative;
+    overflow: hidden;
   }
 
+  /* Corner ornaments */
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 20px; height: 20px;
+    border-top: 2px solid var(--rust);
+    border-left: 2px solid var(--rust);
+  }
+
+  .card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; right: 0;
+    width: 20px; height: 20px;
+    border-bottom: 2px solid var(--rust);
+    border-right: 2px solid var(--rust);
+  }
+
+  /* QUOTE */
   .quote-card {
-    position: relative;
-    padding: 32px 32px 28px;
+    padding: 36px 36px 32px;
+    text-align: center;
+    background: var(--card2);
+    border-color: var(--border-gold);
   }
 
   .quote-mark {
     font-family: 'Playfair Display', serif;
-    font-size: 5rem;
-    line-height: 1;
-    color: var(--border);
-    position: absolute;
-    top: 12px;
-    left: 24px;
-    user-select: none;
+    font-size: 4rem;
+    line-height: 0.5;
+    color: var(--rust);
+    display: block;
+    margin-bottom: 20px;
+    opacity: 0.8;
   }
 
   .quote-text {
     font-family: 'Playfair Display', serif;
     font-style: italic;
-    font-size: 1.15rem;
-    line-height: 1.7;
-    padding-top: 24px;
-    color: var(--text);
+    font-size: 1.2rem;
+    line-height: 1.75;
+    color: var(--cream);
+    max-width: 640px;
+    margin: 0 auto 20px;
   }
 
   .quote-author {
-    margin-top: 16px;
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    font-weight: 500;
-    letter-spacing: 0.04em;
+    font-size: 0.72rem;
+    color: var(--gold);
+    font-weight: 700;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
   }
 
+  /* GRID */
   .grid-5 {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 16px;
+    gap: 12px;
   }
 
   .grid-4 {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 16px;
+    gap: 12px;
   }
 
+  /* BADGE */
   .badge {
     display: inline-block;
-    padding: 3px 10px;
-    border-radius: 20px;
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
+    padding: 2px 9px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: #fff;
     margin-bottom: 10px;
+    border: 1px solid;
   }
 
-  .badge-реклама { background: var(--badge-ad); }
-  .badge-клип { background: var(--badge-clip); }
-  .badge-анимация { background: var(--badge-anim); }
-  .badge-рилс { background: var(--badge-reels); }
-  .badge-ai-видео, .badge-ai { background: var(--badge-ai); }
+  .badge-реклама { color: #E8A87C; border-color: #8B4513; background: rgba(139,69,19,0.2); }
+  .badge-клип    { color: #B8A0D8; border-color: #5A3878; background: rgba(90,56,120,0.2); }
+  .badge-анимация { color: #7EC8A0; border-color: #1E6B40; background: rgba(30,107,64,0.2); }
+  .badge-рилс    { color: #7AB8D8; border-color: #1E4A6B; background: rgba(30,74,107,0.2); }
+  .badge-ai-видео, .badge-ai { color: var(--gold); border-color: var(--gold2); background: rgba(168,124,42,0.15); }
 
+  /* INSIGHT CARD */
   .insight-card {
     background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 20px;
+    border-radius: 2px;
+    padding: 18px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    transition: border-color 0.2s;
+    gap: 8px;
+    transition: border-color 0.2s, background 0.2s;
+    position: relative;
   }
 
-  .insight-card:hover { border-color: #ccc; }
+  .insight-card:hover {
+    border-color: var(--border-gold);
+    background: var(--card2);
+  }
 
   .insight-title {
-    font-weight: 600;
-    font-size: 0.95rem;
-    line-height: 1.4;
+    font-weight: 700;
+    font-size: 0.92rem;
+    line-height: 1.3;
+    color: var(--cream);
+    letter-spacing: 0.02em;
   }
 
   .insight-brand {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     color: var(--text-muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
   }
 
   .insight-scenario {
-    font-size: 0.85rem;
-    color: #555;
-    line-height: 1.55;
+    font-size: 0.83rem;
+    color: #9A8870;
+    line-height: 1.6;
   }
 
   .insight-footer {
@@ -232,35 +364,37 @@
     align-items: center;
     justify-content: space-between;
     margin-top: auto;
-    padding-top: 8px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
   }
 
   .insight-link {
-    font-size: 0.82rem;
-    color: var(--text);
+    font-size: 0.78rem;
+    color: var(--gold);
     text-decoration: none;
-    font-weight: 500;
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 1px;
-    transition: border-color 0.2s;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: color 0.2s;
   }
 
-  .insight-link:hover { border-color: var(--text); }
+  .insight-link:hover { color: var(--rust); }
 
   .like-btn {
     background: none;
     border: none;
     cursor: pointer;
-    font-size: 1.1rem;
+    font-size: 1rem;
     padding: 2px 4px;
-    border-radius: 4px;
     transition: transform 0.15s;
     line-height: 1;
+    color: var(--text-muted);
   }
 
-  .like-btn:hover { transform: scale(1.2); }
-  .like-btn.liked { color: #c0392b; }
+  .like-btn:hover { transform: scale(1.25); color: var(--rust); }
+  .like-btn.liked { color: var(--rust); }
 
+  /* PERSON */
   .person-card { padding: 28px; }
 
   .person-header {
@@ -268,170 +402,260 @@
     align-items: center;
     gap: 16px;
     margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
   }
 
   .person-avatar {
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    background: var(--text);
-    color: #fff;
+    width: 60px;
+    height: 60px;
+    border: 2px solid var(--rust);
+    color: var(--rust);
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: 'Playfair Display', serif;
-    font-size: 1.2rem;
-    font-weight: 600;
+    font-size: 1.3rem;
+    font-weight: 700;
     flex-shrink: 0;
+    background: var(--card2);
+    position: relative;
+  }
+
+  .person-avatar::before {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    border: 1px solid var(--border-gold);
   }
 
   .person-name {
     font-family: 'Playfair Display', serif;
-    font-size: 1.25rem;
-    font-weight: 600;
+    font-size: 1.2rem;
+    font-weight: 700;
     line-height: 1.2;
+    color: var(--cream);
+    letter-spacing: 0.02em;
   }
 
   .person-profession {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    margin-top: 3px;
+    font-size: 0.75rem;
+    color: var(--gold);
+    margin-top: 4px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
   }
 
   .person-bio {
-    font-size: 0.9rem;
-    line-height: 1.65;
-    color: #333;
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: #9A8870;
     margin-bottom: 16px;
   }
 
   .person-style {
-    background: var(--bg);
-    border-radius: 8px;
+    background: var(--bg2);
+    border-left: 3px solid var(--rust);
     padding: 14px 16px;
     font-size: 0.85rem;
-    color: #444;
-    line-height: 1.6;
-    margin-bottom: 16px;
+    color: #8A7660;
+    line-height: 1.65;
+    margin-bottom: 20px;
   }
 
   .person-style-label {
-    font-weight: 600;
-    font-size: 0.78rem;
+    font-weight: 700;
+    font-size: 0.68rem;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--text-muted);
+    letter-spacing: 0.14em;
+    color: var(--rust);
     margin-bottom: 6px;
   }
 
   .person-works { list-style: none; }
 
   .person-works li {
-    padding: 10px 0;
+    padding: 12px 0;
     border-top: 1px solid var(--border);
-    font-size: 0.88rem;
+    font-size: 0.86rem;
     display: flex;
-    gap: 12px;
+    gap: 14px;
   }
 
-  .person-works li:first-child { border-top: none; }
-
   .work-year {
-    color: var(--text-muted);
-    font-size: 0.8rem;
+    color: var(--gold2);
+    font-size: 0.75rem;
     white-space: nowrap;
-    padding-top: 1px;
+    padding-top: 2px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    min-width: 36px;
   }
 
   .work-info { flex: 1; }
-  .work-title { font-weight: 600; }
-  .work-desc { color: #555; font-size: 0.82rem; margin-top: 2px; }
+  .work-title { font-weight: 700; color: var(--cream); font-size: 0.88rem; }
+  .work-desc { color: #7A6B58; font-size: 0.8rem; margin-top: 3px; line-height: 1.5; }
 
+  /* TREND CARD */
   .trend-card {
     background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 12px;
+    border-radius: 2px;
     padding: 20px;
+    transition: border-color 0.2s;
+    position: relative;
+    overflow: hidden;
   }
 
-  .trend-name {
-    font-weight: 600;
-    font-size: 0.95rem;
+  .trend-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--rust), var(--gold));
+  }
+
+  .trend-card:hover { border-color: var(--border-gold); }
+
+  .trend-num {
+    font-size: 0.65rem;
+    color: var(--rust);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
     margin-bottom: 8px;
   }
 
-  .trend-desc {
-    font-size: 0.85rem;
-    color: #555;
-    line-height: 1.55;
+  .trend-name {
+    font-weight: 700;
+    font-size: 0.95rem;
     margin-bottom: 10px;
+    color: var(--cream);
+    letter-spacing: 0.02em;
+    line-height: 1.3;
+  }
+
+  .trend-desc {
+    font-size: 0.82rem;
+    color: #8A7660;
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+
+  .trend-example-label {
+    font-size: 0.65rem;
+    color: var(--gold2);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
   }
 
   .trend-example {
     font-size: 0.8rem;
-    color: var(--text-muted);
-    font-style: italic;
+    color: var(--gold);
+    line-height: 1.5;
     border-top: 1px solid var(--border);
     padding-top: 10px;
   }
 
+  /* EXERCISE */
   .exercise-header {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
     gap: 12px;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
   }
 
   .exercise-title {
     font-family: 'Playfair Display', serif;
-    font-size: 1.15rem;
-    font-weight: 600;
+    font-size: 1.2rem;
+    font-weight: 700;
     line-height: 1.3;
+    color: var(--cream);
+    letter-spacing: 0.02em;
   }
 
   .time-badge {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 20px;
+    background: transparent;
+    border: 1px solid var(--rust);
     padding: 4px 12px;
-    font-size: 0.8rem;
-    color: var(--text-muted);
+    font-size: 0.72rem;
+    color: var(--rust);
     white-space: nowrap;
-    font-weight: 500;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    flex-shrink: 0;
   }
 
   .exercise-desc {
-    font-size: 0.9rem;
-    line-height: 1.65;
-    color: #333;
-    margin-bottom: 16px;
+    font-size: 0.88rem;
+    line-height: 1.75;
+    color: #9A8870;
+    margin-bottom: 18px;
     white-space: pre-line;
   }
 
   .exercise-goal {
-    background: var(--bg);
-    border-radius: 8px;
+    background: var(--bg2);
+    border-left: 3px solid var(--gold);
     padding: 12px 16px;
-    font-size: 0.85rem;
+    font-size: 0.84rem;
+    color: #8A7660;
+    line-height: 1.6;
   }
 
   .exercise-goal-label {
-    font-weight: 600;
-    font-size: 0.78rem;
+    font-weight: 700;
+    font-size: 0.68rem;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--text-muted);
+    letter-spacing: 0.14em;
+    color: var(--gold);
     margin-bottom: 4px;
   }
 
+  /* CHAT */
   .chat-container {
     background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 12px;
+    border-radius: 2px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
+  }
+
+  .chat-header-bar {
+    background: var(--card2);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .chat-header-bar span {
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .chat-status-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--rust);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
   }
 
   .chat-messages {
@@ -443,46 +667,52 @@
     flex-direction: column;
     gap: 12px;
     scroll-behavior: smooth;
+    background: var(--bg2);
   }
+
+  .chat-messages::-webkit-scrollbar { width: 4px; }
+  .chat-messages::-webkit-scrollbar-track { background: var(--bg); }
+  .chat-messages::-webkit-scrollbar-thumb { background: var(--border-gold); }
 
   .chat-empty {
     color: var(--text-muted);
-    font-size: 0.88rem;
+    font-size: 0.85rem;
     text-align: center;
-    padding: 24px 0;
+    padding: 32px 0;
     font-style: italic;
+    letter-spacing: 0.02em;
   }
 
   .msg {
-    max-width: 78%;
+    max-width: 80%;
     padding: 10px 14px;
-    border-radius: 12px;
-    font-size: 0.88rem;
-    line-height: 1.6;
+    font-size: 0.86rem;
+    line-height: 1.65;
     white-space: pre-wrap;
   }
 
   .msg-user {
-    background: var(--text);
+    background: var(--rust);
     color: #fff;
     align-self: flex-end;
-    border-bottom-right-radius: 4px;
+    border-bottom-right-radius: 2px;
   }
 
   .msg-ai {
-    background: var(--bg);
+    background: var(--card);
     border: 1px solid var(--border);
     color: var(--text);
     align-self: flex-start;
-    border-bottom-left-radius: 4px;
+    border-left: 2px solid var(--gold2);
   }
 
   .msg-thinking {
     color: var(--text-muted);
     font-style: italic;
-    font-size: 0.82rem;
+    font-size: 0.8rem;
     align-self: flex-start;
     padding: 8px 0;
+    letter-spacing: 0.06em;
   }
 
   .chat-input-area {
@@ -491,20 +721,20 @@
     display: flex;
     gap: 10px;
     align-items: flex-end;
-    background: var(--bg);
+    background: var(--card);
   }
 
   .chat-textarea {
     flex: 1;
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: 2px;
     padding: 10px 12px;
     font-family: 'Golos Text', sans-serif;
-    font-size: 0.88rem;
+    font-size: 0.86rem;
     resize: none;
     min-height: 40px;
     max-height: 120px;
-    background: var(--card);
+    background: var(--bg2);
     color: var(--text);
     outline: none;
     overflow-y: auto;
@@ -512,13 +742,13 @@
     line-height: 1.5;
   }
 
-  .chat-textarea:focus { border-color: #aaa; }
+  .chat-textarea:focus { border-color: var(--gold2); }
+  .chat-textarea::placeholder { color: var(--text-muted); }
 
   .chat-send-btn {
     width: 40px;
     height: 40px;
-    border-radius: 8px;
-    background: var(--text);
+    background: var(--rust);
     color: #fff;
     border: none;
     cursor: pointer;
@@ -528,159 +758,172 @@
     justify-content: center;
     flex-shrink: 0;
     transition: opacity 0.2s;
+    letter-spacing: 0;
   }
 
   .chat-send-btn:hover { opacity: 0.8; }
-  .chat-send-btn:disabled { opacity: 0.4; cursor: default; }
+  .chat-send-btn:disabled { opacity: 0.35; cursor: default; }
 
+  /* TRACKER */
   .tracker-top {
     display: flex;
     align-items: center;
     gap: 14px;
     margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
   }
 
   .tracker-check {
-    width: 20px;
-    height: 20px;
+    width: 18px; height: 18px;
     cursor: pointer;
-    accent-color: var(--text);
+    accent-color: var(--rust);
     flex-shrink: 0;
   }
 
   .tracker-label {
-    font-size: 0.95rem;
+    font-size: 0.88rem;
     cursor: pointer;
     user-select: none;
+    color: var(--cream);
+    letter-spacing: 0.04em;
+    font-weight: 500;
   }
 
   .calendar-header {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 4px;
-    margin-bottom: 4px;
+    gap: 3px;
+    margin-bottom: 3px;
   }
 
   .cal-day-label {
     text-align: center;
-    font-size: 0.72rem;
+    font-size: 0.65rem;
     color: var(--text-muted);
-    font-weight: 600;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.04em;
-    padding: 4px 0;
+    letter-spacing: 0.06em;
+    padding: 6px 0;
   }
 
   .calendar-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 4px;
+    gap: 3px;
   }
 
   .cal-day {
     aspect-ratio: 1;
-    border-radius: 6px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.82rem;
+    font-size: 0.8rem;
     color: var(--text-muted);
-    background: transparent;
+    background: var(--bg2);
     cursor: default;
     transition: background 0.15s;
+    font-weight: 500;
   }
 
   .cal-day.done {
-    background: var(--text);
+    background: var(--rust);
     color: #fff;
+    font-weight: 700;
   }
 
   .cal-day.today {
-    outline: 2px solid var(--text);
+    outline: 2px solid var(--gold);
     outline-offset: -2px;
-    color: var(--text);
-    font-weight: 600;
+    color: var(--gold);
+    font-weight: 700;
   }
 
   .cal-day.done.today { color: #fff; }
   .cal-day.empty { background: transparent; }
 
+  /* TABS */
   .tabs {
     display: flex;
-    gap: 6px;
+    gap: 4px;
     flex-wrap: wrap;
     margin-bottom: 20px;
   }
 
   .tab-btn {
-    padding: 6px 14px;
-    border-radius: 20px;
+    padding: 5px 14px;
     border: 1px solid var(--border);
     background: transparent;
     font-family: 'Golos Text', sans-serif;
-    font-size: 0.82rem;
+    font-size: 0.72rem;
     cursor: pointer;
     color: var(--text-muted);
     transition: all 0.15s;
-    font-weight: 500;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 0;
   }
 
   .tab-btn.active, .tab-btn:hover {
-    background: var(--text);
+    background: var(--rust);
     color: #fff;
-    border-color: var(--text);
+    border-color: var(--rust);
   }
 
   .likes-placeholder {
-    border: 1.5px dashed var(--border);
-    border-radius: 12px;
-    padding: 40px 20px;
+    border: 1px dashed var(--border-gold);
+    padding: 48px 20px;
     text-align: center;
     color: var(--text-muted);
-    font-size: 0.88rem;
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
   }
 
+  /* BUTTONS */
   .btn-primary {
-    background: var(--text);
+    background: var(--rust);
     color: #fff;
     border: none;
-    border-radius: 8px;
-    padding: 10px 20px;
+    padding: 10px 22px;
     font-family: 'Golos Text', sans-serif;
-    font-size: 0.88rem;
-    font-weight: 500;
+    font-size: 0.75rem;
+    font-weight: 700;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
     gap: 8px;
     transition: opacity 0.2s;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
   }
 
   .btn-primary:hover { opacity: 0.82; }
-  .btn-primary:disabled { opacity: 0.45; cursor: default; }
+  .btn-primary:disabled { opacity: 0.4; cursor: default; }
 
   .btn-secondary {
     background: transparent;
-    color: var(--text);
+    color: var(--text-muted);
     border: 1px solid var(--border);
-    border-radius: 8px;
     padding: 10px 18px;
     font-family: 'Golos Text', sans-serif;
-    font-size: 0.88rem;
-    font-weight: 500;
+    font-size: 0.75rem;
+    font-weight: 700;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    transition: border-color 0.2s, opacity 0.2s;
+    transition: all 0.2s;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
   }
 
-  .btn-secondary:hover { border-color: #aaa; }
-  .btn-secondary:disabled { opacity: 0.45; cursor: default; }
+  .btn-secondary:hover { border-color: var(--gold2); color: var(--gold); }
+  .btn-secondary:disabled { opacity: 0.4; cursor: default; }
 
+  /* SPINNER */
   .spinner {
-    width: 16px;
-    height: 16px;
+    width: 14px; height: 14px;
     border: 2px solid currentColor;
     border-top-color: transparent;
     border-radius: 50%;
@@ -691,47 +934,77 @@
 
   @keyframes spin { to { transform: rotate(360deg); } }
 
+  /* LOADING STATE */
+  .loading-state {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    padding: 20px 0;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* ERROR */
   .error-msg {
-    color: #c0392b;
-    font-size: 0.85rem;
+    color: #E8705A;
+    font-size: 0.82rem;
     padding: 12px 16px;
-    background: #fff5f5;
-    border: 1px solid #f5c6c6;
-    border-radius: 8px;
+    background: rgba(196,98,45,0.08);
+    border: 1px solid rgba(196,98,45,0.3);
     display: flex;
     align-items: center;
     gap: 10px;
     flex-wrap: wrap;
+    letter-spacing: 0.02em;
   }
 
   .error-msg a {
-    color: #c0392b;
-    font-weight: 600;
+    color: var(--gold);
+    font-weight: 700;
     cursor: pointer;
     text-decoration: underline;
   }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border-gold); }
 </style>
 </head>
 <body>
 <div class="container">
 
+  <!-- HEADER -->
   <header>
-    <h1>Творческое утро</h1>
+    <div class="header-ornament">
+      <span></span><span></span><span></span>
+    </div>
+    <h1>Творческое <span>утро</span></h1>
+    <div class="orn" style="margin:12px 0 8px;">
+      <span class="orn-sym">◆ ◆ ◆</span>
+    </div>
     <span class="date" id="currentDate"></span>
   </header>
 
+  <!-- API KEY -->
   <div class="api-key-section">
     <label for="apiKeyInput">Anthropic API Key</label>
     <input type="password" id="apiKeyInput" placeholder="sk-ant-..." autocomplete="off">
     <span class="api-key-saved" id="apiKeySaved">Сохранён ✓</span>
   </div>
 
-  <section id="quoteSection">
-    <div id="quoteContent"><div style="display:flex;align-items:center;gap:10px;color:var(--text-muted);font-size:.88rem;"><span class="spinner"></span> Загружаю цитату дня…</div></div>
+  <!-- QUOTE -->
+  <section>
+    <div id="quoteContent">
+      <div class="loading-state"><span class="spinner"></span> Загружаю цитату дня…</div>
+    </div>
   </section>
 
   <hr>
 
+  <!-- НАСМОТРЕННОСТЬ -->
   <section>
     <div class="section-header">
       <h2 class="section-title">Насмотренность</h2>
@@ -745,9 +1018,10 @@
 
   <hr>
 
+  <!-- ЛИЧНОСТЬ ДНЯ -->
   <section>
     <div class="section-header">
-      <h2 class="section-title">Личность дня</h2>
+      <h2 class="section-title">Личность <em>дня</em></h2>
       <button class="btn-primary" id="personBtn" onclick="loadPerson()">Загрузить</button>
     </div>
     <div id="personContent"></div>
@@ -755,9 +1029,10 @@
 
   <hr>
 
+  <!-- ТРЕНДЫ -->
   <section>
     <div class="section-header">
-      <h2 class="section-title">Тренды в графическом дизайне</h2>
+      <h2 class="section-title">Тренды <em>дизайна</em></h2>
       <button class="btn-primary" id="trendsBtn" onclick="loadTrends()">Загрузить</button>
     </div>
     <div id="trendsContent"></div>
@@ -765,9 +1040,10 @@
 
   <hr>
 
+  <!-- УПРАЖНЕНИЕ -->
   <section>
     <div class="section-header">
-      <h2 class="section-title">Упражнение дня</h2>
+      <h2 class="section-title">Упражнение <em>дня</em></h2>
       <button class="btn-primary" id="exerciseBtn" onclick="loadExercise()">Загрузить</button>
     </div>
     <div id="exerciseContent"></div>
@@ -775,16 +1051,21 @@
 
   <hr>
 
+  <!-- ЧАТ -->
   <section>
     <div class="section-header">
-      <h2 class="section-title">Генерация концепта</h2>
+      <h2 class="section-title">Генерация <em>концепта</em></h2>
     </div>
     <div class="chat-container">
+      <div class="chat-header-bar">
+        <div class="chat-status-dot"></div>
+        <span>Арт-директор онлайн</span>
+      </div>
       <div class="chat-messages" id="chatMessages">
-        <div class="chat-empty">Опиши идею — я помогу её докрутить до концепта для видео, клипа или фэшн-съёмки</div>
+        <div class="chat-empty">Опиши идею — докрутим до концепта для видео, клипа или фэшн-съёмки</div>
       </div>
       <div class="chat-input-area">
-        <textarea class="chat-textarea" id="chatInput" placeholder="Опиши концепт или задай вопрос…" rows="1"></textarea>
+        <textarea class="chat-textarea" id="chatInput" placeholder="Опиши концепт…" rows="1"></textarea>
         <button class="chat-send-btn" id="chatSendBtn" onclick="sendChat()" title="Отправить">↑</button>
       </div>
     </div>
@@ -792,9 +1073,10 @@
 
   <hr>
 
+  <!-- ТРЕКЕР -->
   <section>
     <div class="section-header">
-      <h2 class="section-title">Трекер практики</h2>
+      <h2 class="section-title">Трекер <em>практики</em></h2>
     </div>
     <div class="card" style="padding:28px;">
       <div class="tracker-top">
@@ -802,12 +1084,9 @@
         <label for="todayCheck" class="tracker-label">Сегодняшняя практика завершена</label>
       </div>
       <div class="calendar-header">
-        <div class="cal-day-label">Пн</div>
-        <div class="cal-day-label">Вт</div>
-        <div class="cal-day-label">Ср</div>
-        <div class="cal-day-label">Чт</div>
-        <div class="cal-day-label">Пт</div>
-        <div class="cal-day-label">Сб</div>
+        <div class="cal-day-label">Пн</div><div class="cal-day-label">Вт</div>
+        <div class="cal-day-label">Ср</div><div class="cal-day-label">Чт</div>
+        <div class="cal-day-label">Пт</div><div class="cal-day-label">Сб</div>
         <div class="cal-day-label">Вс</div>
       </div>
       <div class="calendar-grid" id="calendarGrid"></div>
@@ -816,17 +1095,18 @@
 
   <hr>
 
+  <!-- БИБЛИОТЕКА -->
   <section>
     <div class="section-header">
-      <h2 class="section-title">Библиотека лайков</h2>
+      <h2 class="section-title">Библиотека <em>лайков</em></h2>
     </div>
     <div class="tabs">
-      <button class="tab-btn active" onclick="filterLikes('all', this)">Все</button>
-      <button class="tab-btn" onclick="filterLikes('реклама', this)">Реклама</button>
-      <button class="tab-btn" onclick="filterLikes('клип', this)">Клипы</button>
-      <button class="tab-btn" onclick="filterLikes('анимация', this)">Анимация</button>
-      <button class="tab-btn" onclick="filterLikes('рилс', this)">Рилсы</button>
-      <button class="tab-btn" onclick="filterLikes('ai-видео', this)">AI</button>
+      <button class="tab-btn active" onclick="filterLikes('all',this)">Все</button>
+      <button class="tab-btn" onclick="filterLikes('реклама',this)">Реклама</button>
+      <button class="tab-btn" onclick="filterLikes('клип',this)">Клипы</button>
+      <button class="tab-btn" onclick="filterLikes('анимация',this)">Анимация</button>
+      <button class="tab-btn" onclick="filterLikes('рилс',this)">Рилсы</button>
+      <button class="tab-btn" onclick="filterLikes('ai-видео',this)">AI</button>
     </div>
     <div id="likesContent"></div>
   </section>
@@ -835,503 +1115,424 @@
 
 <script>
 const today = new Date();
-const dateKey = today.toISOString().slice(0, 10);
+const dateKey = today.toISOString().slice(0,10);
 
-function getLS(key, def = null) {
-  try { const v = localStorage.getItem(key); return v !== null ? JSON.parse(v) : def; }
-  catch { return def; }
+function getLS(k,d=null){try{const v=localStorage.getItem(k);return v!==null?JSON.parse(v):d;}catch{return d;}}
+function setLS(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch{}}
+
+function getApiKey(){
+  return document.getElementById('apiKeyInput').value.trim() || getLS('anthropic_api_key','');
 }
 
-function setLS(key, value) {
-  try { localStorage.setItem(key, JSON.stringify(value)); } catch {}
-}
-
-function getApiKey() {
-  return document.getElementById('apiKeyInput').value.trim() || getLS('anthropic_api_key', '');
-}
-
-function formatDate(d) {
-  const days = ['воскресенье','понедельник','вторник','среда','четверг','пятница','суббота'];
-  const months = ['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+function formatDate(d){
+  const days=['воскресенье','понедельник','вторник','среда','четверг','пятница','суббота'];
+  const months=['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
   return `${days[d.getDay()]}, ${d.getDate()} ${months[d.getMonth()]}`;
 }
 
-function parseJSON(raw) {
-  let str = raw.replace(/```json\s*/gi, '').replace(/```\s*/g, '').trim();
-  const arrMatch = str.match(/\[[\s\S]*\]/);
-  if (arrMatch) { try { return JSON.parse(arrMatch[0]); } catch {} }
-  const objMatch = str.match(/\{[\s\S]*\}/);
-  if (objMatch) { try { return JSON.parse(objMatch[0]); } catch {} }
-  try { return JSON.parse(str); } catch {}
+function parseJSON(raw){
+  if(!raw) return null;
+  let str = raw.replace(/```json\s*/gi,'').replace(/```\s*/g,'').trim();
+  // Try array
+  const arrM = str.match(/\[[\s\S]*\]/);
+  if(arrM){try{return JSON.parse(arrM[0]);}catch{}}
+  // Try object
+  const objM = str.match(/\{[\s\S]*\}/);
+  if(objM){try{return JSON.parse(objM[0]);}catch{}}
+  try{return JSON.parse(str);}catch{}
   return null;
 }
 
-function spinner() { return '<span class="spinner"></span>'; }
+function sp(){return '<span class="spinner"></span>';}
+function loading(msg='Загружаю…'){return `<div class="loading-state">${sp()} ${msg}</div>`;}
+function errHtml(msg,fn){return `<div class="error-msg">⚠ ${msg} <a onclick="${fn}">Попробовать снова</a></div>`;}
 
-function errHtml(msg, retryFn) {
-  return `<div class="error-msg">⚠ ${msg} <a onclick="${retryFn}">Попробовать снова</a></div>`;
+function setBtnLoad(id,on){
+  const b=document.getElementById(id);if(!b)return;
+  b.disabled=on;
+  if(on){b._o=b.innerHTML;b.innerHTML=sp()+' Загружаю…';}
+  else{b.innerHTML=b._o||'Загрузить';}
 }
 
-function setLoading(btn, loading) {
-  if (!btn) return;
-  btn.disabled = loading;
-  if (loading) { btn._orig = btn.innerHTML; btn.innerHTML = spinner() + ' Загружаю…'; }
-  else { btn.innerHTML = btn._orig || 'Загрузить'; }
-}
+const SYS=`Ты персональный творческий куратор видеографа и арт-директора. Отвечай живо и конкретно. Ориентируйся на авторское визуальное искусство. Всегда на русском языке. Возвращай ТОЛЬКО валидный JSON без markdown-обёртки, без комментариев, без текста вне JSON.`;
 
-const SYSTEM = `Ты персональный творческий куратор видеографа и арт-директора. Контент живой и конкретный, не энциклопедический. Ориентация на авторское визуальное искусство. Всегда отвечай на русском языке. Возвращай JSON без markdown-обёртки и без лишних комментариев.`;
-
-const HEADERS = {
-  'x-api-key': '',
-  'anthropic-version': '2023-06-01',
-  'anthropic-dangerous-direct-browser-access': 'true',
-  'content-type': 'application/json'
-};
-
-async function callClaude({ prompt, tools, maxTokens = 1024 }) {
-  const key = getApiKey();
-  if (!key) throw new Error('Введите API ключ Anthropic');
-
-  const body = {
-    model: 'claude-sonnet-4-5',
-    max_tokens: maxTokens,
-    system: SYSTEM,
-    messages: [{ role: 'user', content: prompt }]
-  };
-  if (tools) body.tools = tools;
-
-  const resp = await fetch('https://api.anthropic.com/v1/messages', {
-    method: 'POST',
-    headers: { ...HEADERS, 'x-api-key': key },
-    body: JSON.stringify(body)
-  });
-
-  if (!resp.ok) {
-    const err = await resp.json().catch(() => ({}));
-    throw new Error(err.error?.message || `HTTP ${resp.status}`);
-  }
-
-  const data = await resp.json();
-  const textBlock = data.content?.find(b => b.type === 'text');
-  return textBlock?.text || '';
-}
-
-async function callClaudeChat(messages, maxTokens = 1500) {
-  const key = getApiKey();
-  if (!key) throw new Error('Введите API ключ Anthropic');
-
-  const body = {
-    model: 'claude-sonnet-4-5',
-    max_tokens: maxTokens,
-    system: `Ты опытный арт-директор и творческий партнёр. Помогаешь докручивать концепты для видеосъёмок, фэшн-съёмок, музыкальных клипов. Мыслишь образами, референсами, цветом, светом, движением. Конкретный, вдохновляющий, без воды. Всегда на русском языке.`,
-    messages
-  };
-
-  const resp = await fetch('https://api.anthropic.com/v1/messages', {
-    method: 'POST',
-    headers: { ...HEADERS, 'x-api-key': key },
-    body: JSON.stringify(body)
-  });
-
-  if (!resp.ok) {
-    const err = await resp.json().catch(() => ({}));
-    throw new Error(err.error?.message || `HTTP ${resp.status}`);
-  }
-
-  const data = await resp.json();
-  const textBlock = data.content?.find(b => b.type === 'text');
-  return textBlock?.text || '';
-}
-
-// Init
-document.getElementById('currentDate').textContent = formatDate(today);
-
-const savedKey = getLS('anthropic_api_key', '');
-if (savedKey) {
-  document.getElementById('apiKeyInput').value = savedKey;
-  document.getElementById('apiKeySaved').style.display = 'inline';
-}
-
-document.getElementById('apiKeyInput').addEventListener('input', function() {
-  const v = this.value.trim();
-  if (v.startsWith('sk-ant-')) {
-    setLS('anthropic_api_key', v);
-    document.getElementById('apiKeySaved').style.display = 'inline';
-  } else {
-    document.getElementById('apiKeySaved').style.display = 'none';
-  }
+const HDR=(key)=>({
+  'x-api-key':key,
+  'anthropic-version':'2023-06-01',
+  'anthropic-dangerous-direct-browser-access':'true',
+  'content-type':'application/json'
 });
 
-// QUOTE
-async function loadQuote() {
-  const cacheKey = `quote_${dateKey}`;
-  const cached = getLS(cacheKey);
-  if (cached) { renderQuote(cached); return; }
-
-  try {
-    const text = await callClaude({
-      prompt: `Верни JSON объект с цитатой из мира кино, фотографии или дизайна. Формат: {"text":"...","author":"Имя Фамилия"}. Только реальные авторы, никаких мотивационных банальностей. Цитата должна быть неожиданной и точной.`,
-      maxTokens: 400
-    });
-    const data = parseJSON(text);
-    if (!data || !data.text) throw new Error('Неверный формат');
-    setLS(cacheKey, data);
-    renderQuote(data);
-  } catch (e) {
-    document.getElementById('quoteContent').innerHTML = errHtml(e.message, 'loadQuote()');
-  }
+async function claude(prompt,maxTokens=1200){
+  const key=getApiKey();
+  if(!key) throw new Error('Введите API ключ Anthropic');
+  const r=await fetch('https://api.anthropic.com/v1/messages',{
+    method:'POST',
+    headers:HDR(key),
+    body:JSON.stringify({
+      model:'claude-sonnet-4-5',
+      max_tokens:maxTokens,
+      system:SYS,
+      messages:[{role:'user',content:prompt}]
+    })
+  });
+  if(!r.ok){const e=await r.json().catch(()=>({}));throw new Error(e.error?.message||`HTTP ${r.status}`);}
+  const d=await r.json();
+  return d.content?.find(b=>b.type==='text')?.text||'';
 }
 
-function renderQuote(data) {
-  document.getElementById('quoteContent').innerHTML = `
+async function claudeChat(messages,maxTokens=1500){
+  const key=getApiKey();
+  if(!key) throw new Error('Введите API ключ Anthropic');
+  const r=await fetch('https://api.anthropic.com/v1/messages',{
+    method:'POST',
+    headers:HDR(key),
+    body:JSON.stringify({
+      model:'claude-sonnet-4-5',
+      max_tokens:maxTokens,
+      system:`Ты опытный арт-директор и творческий партнёр. Помогаешь докручивать концепты для видеосъёмок, фэшн-съёмок, музыкальных клипов. Мыслишь образами, референсами, цветом, светом, движением. Конкретный, вдохновляющий, без воды. Всегда на русском языке.`,
+      messages
+    })
+  });
+  if(!r.ok){const e=await r.json().catch(()=>({}));throw new Error(e.error?.message||`HTTP ${r.status}`);}
+  const d=await r.json();
+  return d.content?.find(b=>b.type==='text')?.text||'';
+}
+
+// INIT
+document.getElementById('currentDate').textContent=formatDate(today);
+const sk=getLS('anthropic_api_key','');
+if(sk){document.getElementById('apiKeyInput').value=sk;document.getElementById('apiKeySaved').style.display='inline';}
+document.getElementById('apiKeyInput').addEventListener('input',function(){
+  const v=this.value.trim();
+  if(v.startsWith('sk-ant-')){setLS('anthropic_api_key',v);document.getElementById('apiKeySaved').style.display='inline';}
+  else{document.getElementById('apiKeySaved').style.display='none';}
+});
+
+// ─── QUOTE ───
+async function loadQuote(){
+  const ck=`quote_${dateKey}`;
+  const cached=getLS(ck);
+  if(cached){renderQuote(cached);return;}
+  try{
+    const t=await claude(`Верни JSON объект с цитатой о визуальном творчестве, кино, фотографии или дизайне.
+Формат строго: {"text":"текст цитаты","author":"Имя Фамилия"}
+Только реальные авторы. Никакой банальщины и мотивации. Цитата должна быть неожиданной и точной. Только JSON, ничего больше.`,400);
+    const d=parseJSON(t);
+    if(!d||!d.text||!d.author) throw new Error('Неверный формат ответа');
+    setLS(ck,d);renderQuote(d);
+  }catch(e){document.getElementById('quoteContent').innerHTML=errHtml(e.message,'loadQuote()');}
+}
+
+function renderQuote(d){
+  document.getElementById('quoteContent').innerHTML=`
     <div class="card quote-card">
-      <div class="quote-mark">"</div>
-      <div class="quote-text">${data.text}</div>
-      <div class="quote-author">— ${data.author}</div>
+      <span class="quote-mark">"</span>
+      <div class="quote-text">${d.text}</div>
+      <div class="orn" style="margin:16px 0 12px;"><span class="orn-sym">◆ ◆ ◆</span></div>
+      <div class="quote-author">— ${d.author}</div>
     </div>`;
 }
 
-// INSIGHTS
-async function loadInsights(forceReload = false) {
-  const cacheKey = `insights_${dateKey}`;
-  if (!forceReload) {
-    const cached = getLS(cacheKey);
-    if (cached) { renderInsights(cached); return; }
-  }
+// ─── INSIGHTS ───
+async function loadInsights(force=false){
+  const ck=`insights_${dateKey}`;
+  if(!force){const c=getLS(ck);if(c){renderInsights(c);return;}}
+  setBtnLoad('insightsBtn',true);
+  document.getElementById('randomBtn').disabled=true;
+  document.getElementById('insightsContent').innerHTML=loading('Подбираю вдохновляющие работы…');
+  try{
+    const t=await claude(`Подбери 5 реальных видеоработ — по одной в каждой категории: реклама, клип, анимация, рилс, ai-видео.
+Выбирай известные работы 2020–2025 года, которые реально существуют и которые легко найти на YouTube или Vimeo.
+Для поиска используй название + бренд/исполнитель.
 
-  const btn = document.getElementById('insightsBtn');
-  const rBtn = document.getElementById('randomBtn');
-  setLoading(btn, true);
-  rBtn.disabled = true;
-  document.getElementById('insightsContent').innerHTML = `<div style="display:flex;align-items:center;gap:10px;color:var(--text-muted);font-size:.88rem;">${spinner()} Ищу вдохновляющие работы…</div>`;
-
-  try {
-    const text = await callClaude({
-      prompt: `Подбери 5 выдающихся видеоработ 2022–2025 года — по одной из каждой категории: реклама, клип, анимация, рилс, ai-видео. Реальные работы, которые реально существуют.
-Верни JSON массив: [{"category":"реклама","title":"Название","brand":"Бренд или исполнитель","scenario":"Краткий визуальный сценарий — что происходит на экране, как снято, 2-3 предложения","url":"https://youtube.com/...","year":2024}]
-Категории строго: реклама, клип, анимация, рилс, ai-видео.`,
-      maxTokens: 2000
-    });
-    const data = parseJSON(text);
-    if (!Array.isArray(data) || data.length === 0) throw new Error('Пустой ответ');
-    setLS(cacheKey, data);
-    renderInsights(data);
-  } catch (e) {
-    document.getElementById('insightsContent').innerHTML = errHtml(e.message, 'loadInsights(false)');
-  } finally {
-    setLoading(btn, false);
-    rBtn.disabled = false;
+Верни ТОЛЬКО JSON массив, без какого-либо другого текста:
+[
+  {
+    "category": "реклама",
+    "title": "Название кампании",
+    "brand": "Название бренда",
+    "scenario": "Визуальный сценарий — что происходит на экране, атмосфера, стиль съёмки. 2-3 предложения.",
+    "search": "название для поиска на YouTube",
+    "year": 2024
   }
+]
+Категории строго: реклама, клип, анимация, рилс, ai-видео. Ровно 5 элементов.`,2000);
+    const d=parseJSON(t);
+    if(!Array.isArray(d)||d.length===0) throw new Error('Пустой ответ');
+    setLS(ck,d);renderInsights(d);
+  }catch(e){document.getElementById('insightsContent').innerHTML=errHtml(e.message,'loadInsights(false)');}
+  finally{setBtnLoad('insightsBtn',false);document.getElementById('randomBtn').disabled=false;}
 }
 
-function renderInsights(items) {
-  const likes = getLS('likes', {});
-  document.getElementById('insightsContent').innerHTML = `
-    <div class="grid-5">
-      ${items.map((it, i) => {
-        const cat = (it.category || '').toLowerCase();
-        const isLiked = !!likes[it.url || it.title];
-        return `<div class="insight-card" id="icard-${i}">
-          <span class="badge badge-${cat}">${it.category}</span>
-          <div class="insight-title">${it.title || ''}</div>
-          <div class="insight-brand">${it.brand || ''}${it.year ? ' · ' + it.year : ''}</div>
-          <div class="insight-scenario">${it.scenario || ''}</div>
-          <div class="insight-footer">
-            ${it.url ? `<a class="insight-link" href="${it.url}" target="_blank" rel="noopener">Смотреть →</a>` : '<span></span>'}
-            <button class="like-btn ${isLiked ? 'liked' : ''}" onclick="toggleLike(${i},'${encodeURIComponent(JSON.stringify(it))}')">${isLiked ? '♥' : '♡'}</button>
-          </div>
-        </div>`;
-      }).join('')}
+function renderInsights(items){
+  const likes=getLS('likes',{});
+  document.getElementById('insightsContent').innerHTML=`<div class="grid-5">${items.map((it,i)=>{
+    const cat=(it.category||'').toLowerCase();
+    const liked=!!likes[it.title];
+    const searchUrl=`https://www.youtube.com/results?search_query=${encodeURIComponent(it.search||it.title+' '+it.brand)}`;
+    return `<div class="insight-card" id="ic-${i}">
+      <span class="badge badge-${cat}">${it.category}</span>
+      <div class="insight-title">${it.title}</div>
+      <div class="insight-brand">${it.brand||''}${it.year?' · '+it.year:''}</div>
+      <div class="insight-scenario">${it.scenario||''}</div>
+      <div class="insight-footer">
+        <a class="insight-link" href="${searchUrl}" target="_blank" rel="noopener">Найти →</a>
+        <button class="like-btn ${liked?'liked':''}" onclick="toggleLike(${i},'${encodeURIComponent(JSON.stringify(it))}')">${liked?'♥':'♡'}</button>
+      </div>
     </div>`;
+  }).join('')}</div>`;
 }
 
-function toggleLike(i, encoded) {
-  const it = JSON.parse(decodeURIComponent(encoded));
-  const likes = getLS('likes', {});
-  const key = it.url || it.title;
-  if (likes[key]) { delete likes[key]; } else { likes[key] = it; }
-  setLS('likes', likes);
-  const btn = document.querySelector(`#icard-${i} .like-btn`);
-  if (btn) { const liked = !!likes[key]; btn.classList.toggle('liked', liked); btn.textContent = liked ? '♥' : '♡'; }
+function toggleLike(i,enc){
+  const it=JSON.parse(decodeURIComponent(enc));
+  const likes=getLS('likes',{});
+  const k=it.title;
+  if(likes[k])delete likes[k];else likes[k]=it;
+  setLS('likes',likes);
+  const btn=document.querySelector(`#ic-${i} .like-btn`);
+  if(btn){const l=!!likes[k];btn.classList.toggle('liked',l);btn.textContent=l?'♥':'♡';}
   renderLikes(currentFilter);
 }
 
-// PERSON
-async function loadPerson() {
-  const cacheKey = `person_${dateKey}`;
-  const cached = getLS(cacheKey);
-  if (cached) { renderPerson(cached); return; }
+// ─── PERSON ───
+async function loadPerson(){
+  const ck=`person_${dateKey}`;
+  const c=getLS(ck);if(c){renderPerson(c);return;}
+  setBtnLoad('personBtn',true);
+  document.getElementById('personContent').innerHTML=loading('Выбираю личность…');
+  try{
+    const t=await claude(`Выбери одного неочевидного, но значимого человека из мира кино, фотографии, анимации, графического дизайна или видеоарта. Не самых известных — интересных, которых стоит открыть.
 
-  const btn = document.getElementById('personBtn');
-  setLoading(btn, true);
-  document.getElementById('personContent').innerHTML = `<div style="display:flex;align-items:center;gap:10px;color:var(--text-muted);font-size:.88rem;">${spinner()} Выбираю личность…</div>`;
-
-  try {
-    const text = await callClaude({
-      prompt: `Выбери одного неочевидного, но значимого человека из мира кино, фотографии, анимации, графического дизайна или видеоарта. Не самых известных — интересных, которых стоит открыть для себя.
-Верни JSON: {"name":"Имя Фамилия","years":"1950–2023","profession":"Режиссёр/Фотограф/etc","nationality":"Страна","bio":"2-3 предложения о личности и вкладе","style":"Описание визуального почерка, 2-3 предложения","works":[{"title":"Название","year":2005,"description":"Краткое описание"}]}
-Ровно 3 работы.`,
-      maxTokens: 800
-    });
-    const data = parseJSON(text);
-    if (!data || !data.name) throw new Error('Неверный формат');
-    setLS(cacheKey, data);
-    renderPerson(data);
-  } catch (e) {
-    document.getElementById('personContent').innerHTML = errHtml(e.message, 'loadPerson()');
-  } finally {
-    setLoading(btn, false);
-  }
+Верни ТОЛЬКО валидный JSON объект, без текста до и после:
+{
+  "name": "Имя Фамилия",
+  "years": "1950–2023",
+  "profession": "Режиссёр",
+  "nationality": "Страна",
+  "bio": "2-3 предложения о личности и вкладе в искусство.",
+  "style": "Описание визуального почерка и метода работы, 2-3 предложения.",
+  "works": [
+    {"title": "Название работы", "year": 2005, "description": "Краткое описание."},
+    {"title": "Название работы", "year": 2010, "description": "Краткое описание."},
+    {"title": "Название работы", "year": 2015, "description": "Краткое описание."}
+  ]
+}
+Строго 3 работы в массиве works. Только JSON.`,900);
+    const d=parseJSON(t);
+    if(!d||!d.name) throw new Error('Не удалось получить данные. Попробуй ещё раз.');
+    setLS(ck,d);renderPerson(d);
+  }catch(e){document.getElementById('personContent').innerHTML=errHtml(e.message,'loadPerson()');}
+  finally{setBtnLoad('personBtn',false);}
 }
 
-function renderPerson(d) {
-  const initials = d.name.split(' ').map(w => w[0]).slice(0, 2).join('');
-  document.getElementById('personContent').innerHTML = `
+function renderPerson(d){
+  const initials=(d.name||'').split(' ').map(w=>w[0]).slice(0,2).join('');
+  document.getElementById('personContent').innerHTML=`
     <div class="card person-card">
       <div class="person-header">
         <div class="person-avatar">${initials}</div>
         <div>
           <div class="person-name">${d.name}</div>
-          <div class="person-profession">${d.profession}${d.nationality ? ' · ' + d.nationality : ''}${d.years ? ' · ' + d.years : ''}</div>
+          <div class="person-profession">${d.profession||''}${d.nationality?' · '+d.nationality:''}${d.years?' · '+d.years:''}</div>
         </div>
       </div>
-      <div class="person-bio">${d.bio}</div>
-      <div class="person-style">
-        <div class="person-style-label">Визуальный почерк</div>
-        ${d.style}
-      </div>
-      <ul class="person-works">
-        ${(d.works || []).map(w => `
-          <li>
-            <span class="work-year">${w.year}</span>
-            <div class="work-info">
-              <div class="work-title">${w.title}</div>
-              <div class="work-desc">${w.description}</div>
-            </div>
-          </li>`).join('')}
+      <div class="person-bio">${d.bio||''}</div>
+      <div class="person-style"><div class="person-style-label">Визуальный почерк</div>${d.style||''}</div>
+      <ul class="person-works">${(d.works||[]).map(w=>`
+        <li>
+          <span class="work-year">${w.year||''}</span>
+          <div class="work-info">
+            <div class="work-title">${w.title||''}</div>
+            <div class="work-desc">${w.description||''}</div>
+          </div>
+        </li>`).join('')}
       </ul>
     </div>`;
 }
 
-// TRENDS
-async function loadTrends() {
-  const cacheKey = `trends_${dateKey}`;
-  const cached = getLS(cacheKey);
-  if (cached) { renderTrends(cached); return; }
+// ─── TRENDS ───
+async function loadTrends(){
+  const ck=`trends_${dateKey}`;
+  const c=getLS(ck);if(c){renderTrends(c);return;}
+  setBtnLoad('trendsBtn',true);
+  document.getElementById('trendsContent').innerHTML=loading('Анализирую тренды…');
+  try{
+    const t=await claude(`Опиши 4 актуальных тренда в графическом дизайне, типографике или визуальном языке 2024–2025 года. Применимые в видеографии и арт-дирекции.
 
-  const btn = document.getElementById('trendsBtn');
-  setLoading(btn, true);
-  document.getElementById('trendsContent').innerHTML = `<div style="display:flex;align-items:center;gap:10px;color:var(--text-muted);font-size:.88rem;">${spinner()} Анализирую тренды…</div>`;
-
-  try {
-    const text = await callClaude({
-      prompt: `Опиши 4 актуальных тренда в графическом дизайне, типографике или визуальном языке 2024–2025 года. Реальные тренды, применимые в видеографии и арт-дирекции.
-Верни JSON массив: [{"name":"Название тренда","description":"2-3 предложения о сути","example":"Конкретный пример — бренд, проект или кампания"}]`,
-      maxTokens: 1200
-    });
-    const data = parseJSON(text);
-    if (!Array.isArray(data)) throw new Error('Неверный формат');
-    setLS(cacheKey, data);
-    renderTrends(data);
-  } catch (e) {
-    document.getElementById('trendsContent').innerHTML = errHtml(e.message, 'loadTrends()');
-  } finally {
-    setLoading(btn, false);
+Верни ТОЛЬКО JSON массив:
+[
+  {
+    "name": "Название тренда",
+    "description": "2-3 предложения о сути тренда и почему он важен.",
+    "example": "Конкретный реальный пример применения — бренд, кампания, художник, проект. Как именно они используют этот тренд."
   }
+]
+Ровно 4 элемента. Только JSON.`,1200);
+    const d=parseJSON(t);
+    if(!Array.isArray(d)) throw new Error('Неверный формат');
+    setLS(ck,d);renderTrends(d);
+  }catch(e){document.getElementById('trendsContent').innerHTML=errHtml(e.message,'loadTrends()');}
+  finally{setBtnLoad('trendsBtn',false);}
 }
 
-function renderTrends(items) {
-  document.getElementById('trendsContent').innerHTML = `
-    <div class="grid-4">
-      ${items.map(t => `
-        <div class="trend-card">
-          <div class="trend-name">${t.name}</div>
-          <div class="trend-desc">${t.description}</div>
-          <div class="trend-example">${t.example}</div>
-        </div>`).join('')}
-    </div>`;
+function renderTrends(items){
+  document.getElementById('trendsContent').innerHTML=`<div class="grid-4">${items.map((t,i)=>`
+    <div class="trend-card">
+      <div class="trend-num">Тренд 0${i+1}</div>
+      <div class="trend-name">${t.name}</div>
+      <div class="trend-desc">${t.description}</div>
+      <div class="trend-example-label">Пример</div>
+      <div class="trend-example">${t.example}</div>
+    </div>`).join('')}</div>`;
 }
 
-// EXERCISE
-async function loadExercise() {
-  const cacheKey = `exercise_${dateKey}`;
-  const cached = getLS(cacheKey);
-  if (cached) { renderExercise(cached); return; }
+// ─── EXERCISE ───
+async function loadExercise(){
+  const ck=`exercise_${dateKey}`;
+  const c=getLS(ck);if(c){renderExercise(c);return;}
+  setBtnLoad('exerciseBtn',true);
+  document.getElementById('exerciseContent').innerHTML=loading('Подбираю упражнение…');
+  try{
+    const t=await claude(`Придумай одно конкретное творческое упражнение для видеографа и арт-директора. Практическое — можно выполнить сегодня.
 
-  const btn = document.getElementById('exerciseBtn');
-  setLoading(btn, true);
-  document.getElementById('exerciseContent').innerHTML = `<div style="display:flex;align-items:center;gap:10px;color:var(--text-muted);font-size:.88rem;">${spinner()} Подбираю упражнение…</div>`;
-
-  try {
-    const text = await callClaude({
-      prompt: `Придумай одно конкретное творческое упражнение для видеографа и арт-директора. Не теоретическое — практическое, которое можно выполнить сегодня.
-Верни JSON: {"title":"Название","duration":"15–30 минут","description":"Пошаговое описание. 4-6 шагов через \\n","goal":"Что развивает, 1-2 предложения"}`,
-      maxTokens: 600
-    });
-    const data = parseJSON(text);
-    if (!data || !data.title) throw new Error('Неверный формат');
-    setLS(cacheKey, data);
-    renderExercise(data);
-  } catch (e) {
-    document.getElementById('exerciseContent').innerHTML = errHtml(e.message, 'loadExercise()');
-  } finally {
-    setLoading(btn, false);
-  }
+Верни ТОЛЬКО JSON объект:
+{
+  "title": "Название упражнения",
+  "duration": "20 минут",
+  "description": "Пошаговое описание. Шаги через символ переноса строки \\n. 4-6 шагов, каждый начинается с цифры и точки.",
+  "goal": "Что развивает это упражнение. 1-2 предложения."
+}
+Только JSON.`,700);
+    const d=parseJSON(t);
+    if(!d||!d.title) throw new Error('Неверный формат');
+    setLS(ck,d);renderExercise(d);
+  }catch(e){document.getElementById('exerciseContent').innerHTML=errHtml(e.message,'loadExercise()');}
+  finally{setBtnLoad('exerciseBtn',false);}
 }
 
-function renderExercise(d) {
-  document.getElementById('exerciseContent').innerHTML = `
+function renderExercise(d){
+  document.getElementById('exerciseContent').innerHTML=`
     <div class="card">
       <div class="exercise-header">
         <div class="exercise-title">${d.title}</div>
         <span class="time-badge">⏱ ${d.duration}</span>
       </div>
       <div class="exercise-desc">${d.description}</div>
-      <div class="exercise-goal">
-        <div class="exercise-goal-label">Развивает</div>
-        ${d.goal}
-      </div>
+      <div class="exercise-goal"><div class="exercise-goal-label">Развивает</div>${d.goal}</div>
     </div>`;
 }
 
-// CHAT
-let chatHistory = [];
-let chatSending = false;
+// ─── CHAT ───
+let chatHistory=[];
+let chatSending=false;
 
-function renderChatMessages() {
-  const el = document.getElementById('chatMessages');
-  if (chatHistory.length === 0) {
-    el.innerHTML = '<div class="chat-empty">Опиши идею — я помогу её докрутить до концепта для видео, клипа или фэшн-съёмки</div>';
+function renderChat(){
+  const el=document.getElementById('chatMessages');
+  if(!chatHistory.length){
+    el.innerHTML='<div class="chat-empty">Опиши идею — докрутим до концепта для видео, клипа или фэшн-съёмки</div>';
     return;
   }
-  el.innerHTML = chatHistory.map(m => {
-    const cls = m.role === 'user' ? 'msg msg-user' : 'msg msg-ai';
-    return `<div class="${cls}">${escHtml(m.content)}</div>`;
+  el.innerHTML=chatHistory.map(m=>{
+    const cls=m.role==='user'?'msg msg-user':'msg msg-ai';
+    return `<div class="${cls}">${esc(m.content)}</div>`;
   }).join('');
-  el.scrollTop = el.scrollHeight;
+  el.scrollTop=el.scrollHeight;
 }
 
-function escHtml(s) {
-  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+async function sendChat(){
+  if(chatSending)return;
+  const ta=document.getElementById('chatInput');
+  const txt=ta.value.trim();if(!txt)return;
+  chatHistory.push({role:'user',content:txt});
+  ta.value='';ta.style.height='auto';
+  renderChat();
+  const el=document.getElementById('chatMessages');
+  const th=document.createElement('div');th.className='msg-thinking';th.textContent='думаю…';
+  el.appendChild(th);el.scrollTop=el.scrollHeight;
+  chatSending=true;document.getElementById('chatSendBtn').disabled=true;
+  try{
+    const r=await claudeChat(chatHistory,1500);
+    chatHistory.push({role:'assistant',content:r});
+  }catch(e){chatHistory.push({role:'assistant',content:`Ошибка: ${e.message}`});}
+  finally{chatSending=false;document.getElementById('chatSendBtn').disabled=false;renderChat();}
 }
 
-async function sendChat() {
-  if (chatSending) return;
-  const ta = document.getElementById('chatInput');
-  const text = ta.value.trim();
-  if (!text) return;
-
-  chatHistory.push({ role: 'user', content: text });
-  ta.value = '';
-  ta.style.height = 'auto';
-  renderChatMessages();
-
-  const el = document.getElementById('chatMessages');
-  const thinking = document.createElement('div');
-  thinking.className = 'msg-thinking';
-  thinking.textContent = 'думаю…';
-  el.appendChild(thinking);
-  el.scrollTop = el.scrollHeight;
-
-  chatSending = true;
-  document.getElementById('chatSendBtn').disabled = true;
-
-  try {
-    const reply = await callClaudeChat(chatHistory, 1500);
-    chatHistory.push({ role: 'assistant', content: reply });
-  } catch (e) {
-    chatHistory.push({ role: 'assistant', content: `Ошибка: ${e.message}` });
-  } finally {
-    chatSending = false;
-    document.getElementById('chatSendBtn').disabled = false;
-    renderChatMessages();
-  }
-}
-
-document.getElementById('chatInput').addEventListener('keydown', function(e) {
-  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendChat(); }
+document.getElementById('chatInput').addEventListener('keydown',function(e){
+  if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendChat();}
+});
+document.getElementById('chatInput').addEventListener('input',function(){
+  this.style.height='auto';this.style.height=Math.min(this.scrollHeight,120)+'px';
 });
 
-document.getElementById('chatInput').addEventListener('input', function() {
-  this.style.height = 'auto';
-  this.style.height = Math.min(this.scrollHeight, 120) + 'px';
-});
-
-// TRACKER
-function toggleToday() {
-  const checked = document.getElementById('todayCheck').checked;
-  const doneDays = getLS('doneDays', {});
-  if (checked) { doneDays[dateKey] = true; } else { delete doneDays[dateKey]; }
-  setLS('doneDays', doneDays);
-  renderCalendar();
+// ─── TRACKER ───
+function toggleToday(){
+  const checked=document.getElementById('todayCheck').checked;
+  const days=getLS('doneDays',{});
+  if(checked)days[dateKey]=true;else delete days[dateKey];
+  setLS('doneDays',days);renderCalendar();
 }
 
-function renderCalendar() {
-  const doneDays = getLS('doneDays', {});
-  const y = today.getFullYear(), m = today.getMonth();
-  const firstDay = new Date(y, m, 1);
-  const lastDay = new Date(y, m + 1, 0);
-  let startDow = firstDay.getDay();
-  startDow = startDow === 0 ? 6 : startDow - 1;
-
-  let html = '';
-  for (let i = 0; i < startDow; i++) html += '<div class="cal-day empty"></div>';
-  for (let d = 1; d <= lastDay.getDate(); d++) {
-    const dk = `${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-    const classes = ['cal-day', doneDays[dk] ? 'done' : '', dk === dateKey ? 'today' : ''].filter(Boolean).join(' ');
-    html += `<div class="${classes}">${d}</div>`;
+function renderCalendar(){
+  const done=getLS('doneDays',{});
+  const y=today.getFullYear(),m=today.getMonth();
+  const first=new Date(y,m,1),last=new Date(y,m+1,0);
+  let dow=first.getDay();dow=dow===0?6:dow-1;
+  let h='';
+  for(let i=0;i<dow;i++)h+='<div class="cal-day empty"></div>';
+  for(let d=1;d<=last.getDate();d++){
+    const dk=`${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const cls=['cal-day',done[dk]?'done':'',dk===dateKey?'today':''].filter(Boolean).join(' ');
+    h+=`<div class="${cls}">${d}</div>`;
   }
-  document.getElementById('calendarGrid').innerHTML = html;
-  document.getElementById('todayCheck').checked = !!doneDays[dateKey];
+  document.getElementById('calendarGrid').innerHTML=h;
+  document.getElementById('todayCheck').checked=!!done[dateKey];
 }
 
-// LIKES
-let currentFilter = 'all';
+// ─── LIKES ───
+let currentFilter='all';
 
-function filterLikes(filter, btn) {
-  currentFilter = filter;
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+function filterLikes(f,btn){
+  currentFilter=f;
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
-  renderLikes(filter);
+  renderLikes(f);
 }
 
-function renderLikes(filter) {
-  const likes = getLS('likes', {});
-  let items = Object.values(likes);
-  if (filter !== 'all') items = items.filter(it => (it.category || '').toLowerCase() === filter);
-
-  const el = document.getElementById('likesContent');
-  if (items.length === 0) {
-    el.innerHTML = '<div class="likes-placeholder">Лайкните видео в разделе «Насмотренность», чтобы сохранить их здесь</div>';
+function renderLikes(f){
+  const likes=getLS('likes',{});
+  let items=Object.values(likes);
+  if(f!=='all')items=items.filter(it=>(it.category||'').toLowerCase()===f);
+  const el=document.getElementById('likesContent');
+  if(!items.length){
+    el.innerHTML='<div class="likes-placeholder">Лайкните видео в разделе «Насмотренность», чтобы сохранить здесь</div>';
     return;
   }
-
-  el.innerHTML = `<div class="grid-5">
-    ${items.map(it => {
-      const cat = (it.category || '').toLowerCase();
-      return `<div class="insight-card">
-        <span class="badge badge-${cat}">${it.category}</span>
-        <div class="insight-title">${it.title || ''}</div>
-        <div class="insight-brand">${it.brand || ''}${it.year ? ' · ' + it.year : ''}</div>
-        <div class="insight-scenario">${it.scenario || ''}</div>
-        <div class="insight-footer">
-          ${it.url ? `<a class="insight-link" href="${it.url}" target="_blank" rel="noopener">Смотреть →</a>` : '<span></span>'}
-          <button class="like-btn liked" onclick="removeLike('${encodeURIComponent(it.url || it.title)}')">♥</button>
-        </div>
-      </div>`;
-    }).join('')}
-  </div>`;
+  el.innerHTML=`<div class="grid-5">${items.map(it=>{
+    const cat=(it.category||'').toLowerCase();
+    const sq=`https://www.youtube.com/results?search_query=${encodeURIComponent(it.search||it.title+' '+it.brand)}`;
+    return `<div class="insight-card">
+      <span class="badge badge-${cat}">${it.category}</span>
+      <div class="insight-title">${it.title||''}</div>
+      <div class="insight-brand">${it.brand||''}${it.year?' · '+it.year:''}</div>
+      <div class="insight-scenario">${it.scenario||''}</div>
+      <div class="insight-footer">
+        <a class="insight-link" href="${sq}" target="_blank" rel="noopener">Найти →</a>
+        <button class="like-btn liked" onclick="removeLike('${encodeURIComponent(it.title)}')">♥</button>
+      </div>
+    </div>`;
+  }).join('')}</div>`;
 }
 
-function removeLike(encodedKey) {
-  const key = decodeURIComponent(encodedKey);
-  const likes = getLS('likes', {});
-  delete likes[key];
-  setLS('likes', likes);
+function removeLike(enc){
+  const k=decodeURIComponent(enc);
+  const likes=getLS('likes',{});delete likes[k];setLS('likes',likes);
   renderLikes(currentFilter);
 }
 
-// START
+// ─── START ───
 renderCalendar();
 renderLikes('all');
 loadQuote();
