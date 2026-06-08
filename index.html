@@ -938,6 +938,7 @@ async function callClaude({ prompt, tools, maxTokens = 1024 }) {
     headers: {
       'x-api-key': key,
       'anthropic-version': '2023-06-01',
+     'anthropic-dangerous-direct-browser-access': 'true',
       'anthropic-beta': 'interleaved-thinking-2025-05-14',
       'content-type': 'application/json'
     },
@@ -971,6 +972,7 @@ async function callClaudeChat(messages, maxTokens = 1500) {
     headers: {
       'x-api-key': key,
       'anthropic-version': '2023-06-01',
+     'anthropic-dangerous-direct-browser-access': 'true',
       'content-type': 'application/json'
     },
     body: JSON.stringify(body)
