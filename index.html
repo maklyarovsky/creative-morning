@@ -1,0 +1,1461 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Творческое утро</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #F7F5F2;
+    --card: #ffffff;
+    --border: #E8E5E0;
+    --text: #1a1a1a;
+    --text-muted: #888880;
+    --accent: #1a1a1a;
+    --badge-ad: #2d2d2d;
+    --badge-clip: #4a3728;
+    --badge-anim: #2a3d2a;
+    --badge-reels: #1a2a3d;
+    --badge-ai: #3d1a3d;
+  }
+
+  body {
+    font-family: 'Golos Text', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 20px 60px;
+  }
+
+  /* HEADER */
+  header {
+    padding: 48px 0 32px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 40px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  header .date {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+
+  /* API KEY */
+  .api-key-section {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .api-key-section label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+
+  .api-key-section input {
+    flex: 1;
+    min-width: 200px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-family: 'Golos Text', sans-serif;
+    font-size: 0.85rem;
+    background: var(--bg);
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .api-key-section input:focus { border-color: #aaa; }
+
+  .api-key-saved {
+    font-size: 0.8rem;
+    color: #5a8a5a;
+    display: none;
+  }
+
+  /* SECTION */
+  section { margin-bottom: 40px; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 40px 0;
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    transition: border-color 0.2s;
+  }
+
+  /* QUOTE */
+  .quote-card {
+    position: relative;
+    padding: 32px 32px 28px;
+  }
+
+  .quote-mark {
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem;
+    line-height: 1;
+    color: var(--border);
+    position: absolute;
+    top: 12px;
+    left: 24px;
+    user-select: none;
+  }
+
+  .quote-text {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    line-height: 1.7;
+    padding-top: 24px;
+    color: var(--text);
+  }
+
+  .quote-author {
+    margin-top: 16px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  /* GRID */
+  .grid-5 {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+  }
+
+  .grid-4 {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+  }
+
+  /* BADGE */
+  .badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+
+  .badge-реклама { background: var(--badge-ad); }
+  .badge-клип { background: var(--badge-clip); }
+  .badge-анимация { background: var(--badge-anim); }
+  .badge-рилс { background: var(--badge-reels); }
+  .badge-ai-видео, .badge-ai { background: var(--badge-ai); }
+
+  /* INSIGHT CARD */
+  .insight-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: border-color 0.2s;
+  }
+
+  .insight-card:hover { border-color: #ccc; }
+
+  .insight-title {
+    font-weight: 600;
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+
+  .insight-brand {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  .insight-scenario {
+    font-size: 0.85rem;
+    color: #555;
+    line-height: 1.55;
+  }
+
+  .insight-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+    padding-top: 8px;
+  }
+
+  .insight-link {
+    font-size: 0.82rem;
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1px;
+    transition: border-color 0.2s;
+  }
+
+  .insight-link:hover { border-color: var(--text); }
+
+  .like-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    padding: 2px 4px;
+    border-radius: 4px;
+    transition: transform 0.15s;
+    line-height: 1;
+  }
+
+  .like-btn:hover { transform: scale(1.2); }
+  .like-btn.liked { color: #c0392b; }
+
+  /* PERSON CARD */
+  .person-card { padding: 28px; }
+
+  .person-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .person-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--text);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+
+  .person-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .person-profession {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 3px;
+  }
+
+  .person-bio {
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: #333;
+    margin-bottom: 16px;
+  }
+
+  .person-style {
+    background: var(--bg);
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-size: 0.85rem;
+    color: #444;
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  .person-style-label {
+    font-weight: 600;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+
+  .person-works { list-style: none; }
+
+  .person-works li {
+    padding: 10px 0;
+    border-top: 1px solid var(--border);
+    font-size: 0.88rem;
+    display: flex;
+    gap: 12px;
+  }
+
+  .person-works li:first-child { border-top: none; }
+
+  .work-year {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    white-space: nowrap;
+    padding-top: 1px;
+  }
+
+  .work-info { flex: 1; }
+  .work-title { font-weight: 600; }
+  .work-desc { color: #555; font-size: 0.82rem; margin-top: 2px; }
+
+  /* TREND CARD */
+  .trend-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+  }
+
+  .trend-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+  }
+
+  .trend-desc {
+    font-size: 0.85rem;
+    color: #555;
+    line-height: 1.55;
+    margin-bottom: 10px;
+  }
+
+  .trend-example {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-style: italic;
+    border-top: 1px solid var(--border);
+    padding-top: 10px;
+  }
+
+  /* EXERCISE CARD */
+  .exercise-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .exercise-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  .time-badge {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+    font-weight: 500;
+  }
+
+  .exercise-desc {
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: #333;
+    margin-bottom: 16px;
+    white-space: pre-line;
+  }
+
+  .exercise-goal {
+    background: var(--bg);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 0.85rem;
+  }
+
+  .exercise-goal-label {
+    font-weight: 600;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+  }
+
+  /* CHAT */
+  .chat-container {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .chat-messages {
+    padding: 20px;
+    min-height: 200px;
+    max-height: 480px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    scroll-behavior: smooth;
+  }
+
+  .chat-empty {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    text-align: center;
+    padding: 24px 0;
+    font-style: italic;
+  }
+
+  .msg {
+    max-width: 78%;
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    white-space: pre-wrap;
+  }
+
+  .msg-user {
+    background: var(--text);
+    color: #fff;
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+  }
+
+  .msg-ai {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+  }
+
+  .msg-thinking {
+    color: var(--text-muted);
+    font-style: italic;
+    font-size: 0.82rem;
+    align-self: flex-start;
+    padding: 8px 0;
+  }
+
+  .chat-input-area {
+    border-top: 1px solid var(--border);
+    padding: 14px 16px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+    background: var(--bg);
+  }
+
+  .chat-textarea {
+    flex: 1;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-family: 'Golos Text', sans-serif;
+    font-size: 0.88rem;
+    resize: none;
+    min-height: 40px;
+    max-height: 120px;
+    background: var(--card);
+    color: var(--text);
+    outline: none;
+    overflow-y: auto;
+    transition: border-color 0.2s;
+    line-height: 1.5;
+  }
+
+  .chat-textarea:focus { border-color: #aaa; }
+
+  .chat-send-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: var(--text);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: opacity 0.2s;
+  }
+
+  .chat-send-btn:hover { opacity: 0.8; }
+  .chat-send-btn:disabled { opacity: 0.4; cursor: default; }
+
+  /* TRACKER */
+  .tracker-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+
+  .tracker-check {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: var(--text);
+    flex-shrink: 0;
+  }
+
+  .tracker-label {
+    font-size: 0.95rem;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .calendar-header {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    margin-bottom: 4px;
+  }
+
+  .cal-day-label {
+    text-align: center;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 4px 0;
+  }
+
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+  }
+
+  .cal-day {
+    aspect-ratio: 1;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    background: transparent;
+    cursor: default;
+    transition: background 0.15s;
+    position: relative;
+  }
+
+  .cal-day.done {
+    background: var(--text);
+    color: #fff;
+  }
+
+  .cal-day.today {
+    outline: 2px solid var(--text);
+    outline-offset: -2px;
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .cal-day.done.today {
+    color: #fff;
+  }
+
+  .cal-day.empty { background: transparent; }
+
+  /* LIKES LIBRARY */
+  .tabs {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+
+  .tab-btn {
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: transparent;
+    font-family: 'Golos Text', sans-serif;
+    font-size: 0.82rem;
+    cursor: pointer;
+    color: var(--text-muted);
+    transition: all 0.15s;
+    font-weight: 500;
+  }
+
+  .tab-btn.active, .tab-btn:hover {
+    background: var(--text);
+    color: #fff;
+    border-color: var(--text);
+  }
+
+  .likes-placeholder {
+    border: 1.5px dashed var(--border);
+    border-radius: 12px;
+    padding: 40px 20px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.88rem;
+  }
+
+  /* BUTTONS */
+  .btn-primary {
+    background: var(--text);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-family: 'Golos Text', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: opacity 0.2s;
+  }
+
+  .btn-primary:hover { opacity: 0.82; }
+  .btn-primary:disabled { opacity: 0.45; cursor: default; }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 18px;
+    font-family: 'Golos Text', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: border-color 0.2s, opacity 0.2s;
+  }
+
+  .btn-secondary:hover { border-color: #aaa; }
+  .btn-secondary:disabled { opacity: 0.45; cursor: default; }
+
+  /* SPINNER */
+  .spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid currentColor;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    display: inline-block;
+    flex-shrink: 0;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ERROR */
+  .error-msg {
+    color: #c0392b;
+    font-size: 0.85rem;
+    padding: 12px 16px;
+    background: #fff5f5;
+    border: 1px solid #f5c6c6;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .error-msg a {
+    color: #c0392b;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <header>
+    <h1>Творческое утро</h1>
+    <span class="date" id="currentDate"></span>
+  </header>
+
+  <!-- API KEY -->
+  <div class="api-key-section">
+    <label for="apiKeyInput">Anthropic API Key</label>
+    <input type="password" id="apiKeyInput" placeholder="sk-ant-..." autocomplete="off">
+    <span class="api-key-saved" id="apiKeySaved">Сохранён ✓</span>
+  </div>
+
+  <!-- QUOTE -->
+  <section id="quoteSection">
+    <div id="quoteContent"><div style="display:flex;align-items:center;gap:10px;color:var(--text-muted);font-size:.88rem;"><span class="spinner"></span> Загружаю цитату дня…</div></div>
+  </section>
+
+  <hr>
+
+  <!-- НАСМОТРЕННОСТЬ -->
+  <section id="insightsSection">
+    <div class="section-header">
+      <h2 class="section-title">Насмотренность</h2>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <button class="btn-secondary" id="randomBtn" onclick="loadInsights(true)">↺ Рандомайзер</button>
+        <button class="btn-primary" id="insightsBtn" onclick="loadInsights(false)">Загрузить подборку</button>
+      </div>
+    </div>
+    <div id="insightsContent"></div>
+  </section>
+
+  <hr>
+
+  <!-- ЛИЧНОСТЬ ДНЯ -->
+  <section id="personSection">
+    <div class="section-header">
+      <h2 class="section-title">Личность дня</h2>
+      <button class="btn-primary" id="personBtn" onclick="loadPerson()">Загрузить</button>
+    </div>
+    <div id="personContent"></div>
+  </section>
+
+  <hr>
+
+  <!-- ТРЕНДЫ -->
+  <section id="trendsSection">
+    <div class="section-header">
+      <h2 class="section-title">Тренды в графическом дизайне</h2>
+      <button class="btn-primary" id="trendsBtn" onclick="loadTrends()">Загрузить</button>
+    </div>
+    <div id="trendsContent"></div>
+  </section>
+
+  <hr>
+
+  <!-- УПРАЖНЕНИЕ -->
+  <section id="exerciseSection">
+    <div class="section-header">
+      <h2 class="section-title">Упражнение дня</h2>
+      <button class="btn-primary" id="exerciseBtn" onclick="loadExercise()">Загрузить</button>
+    </div>
+    <div id="exerciseContent"></div>
+  </section>
+
+  <hr>
+
+  <!-- ЧАТ -->
+  <section id="chatSection">
+    <div class="section-header">
+      <h2 class="section-title">Генерация концепта</h2>
+    </div>
+    <div class="chat-container">
+      <div class="chat-messages" id="chatMessages">
+        <div class="chat-empty">Опиши идею — я помогу её докрутить до концепта для видео, клипа или фэшн-съёмки</div>
+      </div>
+      <div class="chat-input-area">
+        <textarea class="chat-textarea" id="chatInput" placeholder="Опиши концепт или задай вопрос…" rows="1"></textarea>
+        <button class="chat-send-btn" id="chatSendBtn" onclick="sendChat()" title="Отправить">↑</button>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- ТРЕКЕР -->
+  <section id="trackerSection">
+    <div class="section-header">
+      <h2 class="section-title">Трекер практики</h2>
+    </div>
+    <div class="card" style="padding:28px;">
+      <div class="tracker-top">
+        <input type="checkbox" class="tracker-check" id="todayCheck" onchange="toggleToday()">
+        <label for="todayCheck" class="tracker-label">Сегодняшняя практика завершена</label>
+      </div>
+      <div class="calendar-header">
+        <div class="cal-day-label">Пн</div>
+        <div class="cal-day-label">Вт</div>
+        <div class="cal-day-label">Ср</div>
+        <div class="cal-day-label">Чт</div>
+        <div class="cal-day-label">Пт</div>
+        <div class="cal-day-label">Сб</div>
+        <div class="cal-day-label">Вс</div>
+      </div>
+      <div class="calendar-grid" id="calendarGrid"></div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- БИБЛИОТЕКА ЛАЙКОВ -->
+  <section id="likesSection">
+    <div class="section-header">
+      <h2 class="section-title">Библиотека лайков</h2>
+    </div>
+    <div class="tabs" id="likeTabs">
+      <button class="tab-btn active" onclick="filterLikes('all', this)">Все</button>
+      <button class="tab-btn" onclick="filterLikes('реклама', this)">Реклама</button>
+      <button class="tab-btn" onclick="filterLikes('клип', this)">Клипы</button>
+      <button class="tab-btn" onclick="filterLikes('анимация', this)">Анимация</button>
+      <button class="tab-btn" onclick="filterLikes('рилс', this)">Рилсы</button>
+      <button class="tab-btn" onclick="filterLikes('ai-видео', this)">AI</button>
+    </div>
+    <div id="likesContent"></div>
+  </section>
+
+</div>
+
+<script>
+// ============================
+// UTILS
+// ============================
+const today = new Date();
+const dateKey = today.toISOString().slice(0, 10);
+
+function getLS(key, def = null) {
+  try { const v = localStorage.getItem(key); return v !== null ? JSON.parse(v) : def; }
+  catch { return def; }
+}
+
+function setLS(key, value) {
+  try { localStorage.setItem(key, JSON.stringify(value)); } catch {}
+}
+
+function getApiKey() {
+  return document.getElementById('apiKeyInput').value.trim() || getLS('anthropic_api_key', '');
+}
+
+function formatDate(d) {
+  const days = ['воскресенье','понедельник','вторник','среда','четверг','пятница','суббота'];
+  const months = ['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+  return `${days[d.getDay()]}, ${d.getDate()} ${months[d.getMonth()]}`;
+}
+
+function parseJSON(raw) {
+  let str = raw.replace(/```json\s*/gi, '').replace(/```\s*/g, '').trim();
+  // Try array first
+  const arrMatch = str.match(/\[[\s\S]*\]/);
+  if (arrMatch) { try { return JSON.parse(arrMatch[0]); } catch {} }
+  // Try object
+  const objMatch = str.match(/\{[\s\S]*\}/);
+  if (objMatch) { try { return JSON.parse(objMatch[0]); } catch {} }
+  try { return JSON.parse(str); } catch {}
+  return null;
+}
+
+function spinner() { return '<span class="spinner"></span>'; }
+
+function errHtml(msg, retryFn) {
+  return `<div class="error-msg">⚠ ${msg} <a onclick="${retryFn}">Попробовать снова</a></div>`;
+}
+
+function setLoading(btn, loading) {
+  if (!btn) return;
+  btn.disabled = loading;
+  if (loading) {
+    btn._orig = btn.innerHTML;
+    btn.innerHTML = spinner() + ' Загружаю…';
+  } else {
+    btn.innerHTML = btn._orig || 'Загрузить';
+  }
+}
+
+const SYSTEM_PROMPT = `Ты персональный творческий куратор видеографа и арт-директора. Контент живой и конкретный, не энциклопедический. Ориентация на авторское визуальное искусство. Всегда отвечай на русском языке. Возвращай JSON без markdown-обёртки и без лишних комментариев.`;
+
+async function callClaude({ prompt, tools, maxTokens = 1024 }) {
+  const key = getApiKey();
+  if (!key) throw new Error('Введите API ключ Anthropic');
+
+  const body = {
+    model: 'claude-sonnet-4-20250514',
+    max_tokens: maxTokens,
+    system: SYSTEM_PROMPT,
+    messages: [{ role: 'user', content: prompt }]
+  };
+  if (tools) body.tools = tools;
+
+  const resp = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: {
+      'x-api-key': key,
+      'anthropic-version': '2023-06-01',
+      'anthropic-beta': 'interleaved-thinking-2025-05-14',
+      'content-type': 'application/json'
+    },
+    body: JSON.stringify(body)
+  });
+
+  if (!resp.ok) {
+    const err = await resp.json().catch(() => ({}));
+    throw new Error(err.error?.message || `HTTP ${resp.status}`);
+  }
+
+  const data = await resp.json();
+  // Extract text from content blocks
+  const textBlock = data.content?.find(b => b.type === 'text');
+  return textBlock?.text || '';
+}
+
+async function callClaudeChat(messages, maxTokens = 1500) {
+  const key = getApiKey();
+  if (!key) throw new Error('Введите API ключ Anthropic');
+
+  const body = {
+    model: 'claude-sonnet-4-20250514',
+    max_tokens: maxTokens,
+    system: `Ты опытный арт-директор и творческий партнёр. Помогаешь докручивать концепты для видеосъёмок, фэшн-съёмок, музыкальных клипов. Мыслишь образами, референсами, цветом, светом, движением. Конкретный, вдохновляющий, без воды. Всегда на русском языке.`,
+    messages
+  };
+
+  const resp = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: {
+      'x-api-key': key,
+      'anthropic-version': '2023-06-01',
+      'content-type': 'application/json'
+    },
+    body: JSON.stringify(body)
+  });
+
+  if (!resp.ok) {
+    const err = await resp.json().catch(() => ({}));
+    throw new Error(err.error?.message || `HTTP ${resp.status}`);
+  }
+
+  const data = await resp.json();
+  const textBlock = data.content?.find(b => b.type === 'text');
+  return textBlock?.text || '';
+}
+
+// ============================
+// INIT
+// ============================
+document.getElementById('currentDate').textContent = formatDate(today);
+
+// API Key persistence
+const savedKey = getLS('anthropic_api_key', '');
+if (savedKey) {
+  document.getElementById('apiKeyInput').value = savedKey;
+  document.getElementById('apiKeySaved').style.display = 'inline';
+}
+
+document.getElementById('apiKeyInput').addEventListener('input', function() {
+  const v = this.value.trim();
+  if (v.startsWith('sk-ant-')) {
+    setLS('anthropic_api_key', v);
+    document.getElementById('apiKeySaved').style.display = 'inline';
+  } else {
+    document.getElementById('apiKeySaved').style.display = 'none';
+  }
+});
+
+// ============================
+// QUOTE
+// ============================
+async function loadQuote() {
+  const cacheKey = `quote_${dateKey}`;
+  const cached = getLS(cacheKey);
+  if (cached) { renderQuote(cached); return; }
+
+  try {
+    const text = await callClaude({
+      prompt: `Верни JSON объект с цитатой из мира кино, фотографии или дизайна. Формат: {"text":"...","author":"Имя Фамилия"}. Только реальные авторы, никаких мотивационных банальностей. Цитата должна быть неожиданной и точной.`,
+      maxTokens: 400
+    });
+    const data = parseJSON(text);
+    if (!data || !data.text) throw new Error('Неверный формат');
+    setLS(cacheKey, data);
+    renderQuote(data);
+  } catch (e) {
+    document.getElementById('quoteContent').innerHTML = errHtml(e.message, 'loadQuote()');
+  }
+}
+
+function renderQuote(data) {
+  document.getElementById('quoteContent').innerHTML = `
+    <div class="card quote-card">
+      <div class="quote-mark">"</div>
+      <div class="quote-text">${data.text}</div>
+      <div class="quote-author">— ${data.author}</div>
+    </div>`;
+}
+
+// ============================
+// INSIGHTS (Насмотренность)
+// ============================
+async function loadInsights(forceReload = false) {
+  const cacheKey = `insights_${dateKey}`;
+  if (!forceReload) {
+    const cached = getLS(cacheKey);
+    if (cached) { renderInsights(cached); return; }
+  }
+
+  const btn = document.getElementById('insightsBtn');
+  const rBtn = document.getElementById('randomBtn');
+  setLoading(btn, true);
+  rBtn.disabled = true;
+
+  document.getElementById('insightsContent').innerHTML = `<div style="display:flex;align-items:center;gap:10px;color:var(--text-muted);font-size:.88rem;">${spinner()} Ищу вдохновляющие работы…</div>`;
+
+  const webSearchTool = { type: 'web_search_20250305', name: 'web_search' };
+
+  try {
+    const text = await callClaude({
+      prompt: `Используй поиск и найди 5 выдающихся видеоработ 2023–2025 года — по одной из каждой категории: реклама, клип, анимация, рилс, ai-видео.
+Верни JSON массив: [{"category":"реклама|клип|анимация|рилс|ai-видео","title":"Название","brand":"Бренд или исполнитель","scenario":"Краткий визуальный сценарий, 2-3 предложения — что происходит на экране, как снято","url":"ссылка","year":2024}].
+Только реальные работы с реальными ссылками (YouTube, Vimeo). Никаких выдуманных URL.`,
+      tools: [webSearchTool],
+      maxTokens: 2000
+    });
+    const data = parseJSON(text);
+    if (!Array.isArray(data) || data.length === 0) throw new Error('Пустой ответ');
+    setLS(cacheKey, data);
+    renderInsights(data);
+  } catch (e) {
+    document.getElementById('insightsContent').innerHTML = errHtml(e.message, 'loadInsights(false)');
+  } finally {
+    setLoading(btn, false);
+    rBtn.disabled = false;
+  }
+}
+
+function renderInsights(items) {
+  const likes = getLS('likes', {});
+  document.getElementById('insightsContent').innerHTML = `
+    <div class="grid-5">
+      ${items.map((it, i) => {
+        const cat = (it.category || '').toLowerCase();
+        const badgeClass = `badge-${cat}`;
+        const isLiked = likes[it.url || it.title] || false;
+        return `<div class="insight-card" id="icard-${i}">
+          <span class="badge ${badgeClass}">${it.category}</span>
+          <div class="insight-title">${it.title || ''}</div>
+          <div class="insight-brand">${it.brand || ''} ${it.year ? '· ' + it.year : ''}</div>
+          <div class="insight-scenario">${it.scenario || ''}</div>
+          <div class="insight-footer">
+            ${it.url ? `<a class="insight-link" href="${it.url}" target="_blank" rel="noopener">Смотреть →</a>` : '<span></span>'}
+            <button class="like-btn ${isLiked ? 'liked' : ''}" onclick="toggleLike(${i},'${encodeURIComponent(JSON.stringify(it))}')" title="Лайк">${isLiked ? '♥' : '♡'}</button>
+          </div>
+        </div>`;
+      }).join('')}
+    </div>`;
+}
+
+function toggleLike(i, encoded) {
+  const it = JSON.parse(decodeURIComponent(encoded));
+  const likes = getLS('likes', {});
+  const key = it.url || it.title;
+  if (likes[key]) {
+    delete likes[key];
+  } else {
+    likes[key] = it;
+  }
+  setLS('likes', likes);
+  // Update button
+  const btn = document.querySelector(`#icard-${i} .like-btn`);
+  if (btn) {
+    const isLiked = !!likes[key];
+    btn.classList.toggle('liked', isLiked);
+    btn.textContent = isLiked ? '♥' : '♡';
+  }
+  renderLikes('all');
+}
+
+// ============================
+// PERSON
+// ============================
+async function loadPerson() {
+  const cacheKey = `person_${dateKey}`;
+  const cached = getLS(cacheKey);
+  if (cached) { renderPerson(cached); return; }
+
+  const btn = document.getElementById('personBtn');
+  setLoading(btn, true);
+  document.getElementById('personContent').innerHTML = `<div style="display:flex;align-items:center;gap:10px;color:var(--text-muted);font-size:.88rem;">${spinner()} Выбираю личность…</div>`;
+
+  try {
+    const text = await callClaude({
+      prompt: `Выбери одного неочевидного, но значимого человека из мира кино, фотографии, анимации, графического дизайна или видеоарта. Не самых известных — интересных, которых стоит открыть для себя.
+Верни JSON: {"name":"Имя Фамилия","years":"1950–2023","profession":"Режиссёр/Фотограф/etc","nationality":"Страна","bio":"2-3 предложения о личности и вкладе","style":"Описание визуального почерка и метода, 2-3 предложения","works":[{"title":"Название","year":2005,"description":"Краткое описание работы"}]}
+Ровно 3 ключевые работы.`,
+      maxTokens: 800
+    });
+    const data = parseJSON(text);
+    if (!data || !data.name) throw new Error('Неверный формат');
+    setLS(cacheKey, data);
+    renderPerson(data);
+  } catch (e) {
+    document.getElementById('personContent').innerHTML = errHtml(e.message, 'loadPerson()');
+  } finally {
+    setLoading(btn, false);
+  }
+}
+
+function renderPerson(d) {
+  const initials = d.name.split(' ').map(w => w[0]).slice(0, 2).join('');
+  document.getElementById('personContent').innerHTML = `
+    <div class="card person-card">
+      <div class="person-header">
+        <div class="person-avatar">${initials}</div>
+        <div>
+          <div class="person-name">${d.name}</div>
+          <div class="person-profession">${d.profession}${d.nationality ? ' · ' + d.nationality : ''}${d.years ? ' · ' + d.years : ''}</div>
+        </div>
+      </div>
+      <div class="person-bio">${d.bio}</div>
+      <div class="person-style">
+        <div class="person-style-label">Визуальный почерк</div>
+        ${d.style}
+      </div>
+      <ul class="person-works">
+        ${(d.works || []).map(w => `
+          <li>
+            <span class="work-year">${w.year}</span>
+            <div class="work-info">
+              <div class="work-title">${w.title}</div>
+              <div class="work-desc">${w.description}</div>
+            </div>
+          </li>`).join('')}
+      </ul>
+    </div>`;
+}
+
+// ============================
+// TRENDS
+// ============================
+async function loadTrends() {
+  const cacheKey = `trends_${dateKey}`;
+  const cached = getLS(cacheKey);
+  if (cached) { renderTrends(cached); return; }
+
+  const btn = document.getElementById('trendsBtn');
+  setLoading(btn, true);
+  document.getElementById('trendsContent').innerHTML = `<div style="display:flex;align-items:center;gap:10px;color:var(--text-muted);font-size:.88rem;">${spinner()} Анализирую тренды…</div>`;
+
+  const webSearchTool = { type: 'web_search_20250305', name: 'web_search' };
+
+  try {
+    const text = await callClaude({
+      prompt: `Найди и опиши 4 актуальных тренда в графическом дизайне, типографике или визуальном языке 2024–2025 года. Реальные тренды, которые можно применить в видеографии и арт-дирекции.
+Верни JSON массив: [{"name":"Название тренда","description":"2-3 предложения о сути тренда","example":"Конкретный пример или референс — бренд, проект, кампания"}]`,
+      tools: [webSearchTool],
+      maxTokens: 1500
+    });
+    const data = parseJSON(text);
+    if (!Array.isArray(data)) throw new Error('Неверный формат');
+    setLS(cacheKey, data);
+    renderTrends(data);
+  } catch (e) {
+    document.getElementById('trendsContent').innerHTML = errHtml(e.message, 'loadTrends()');
+  } finally {
+    setLoading(btn, false);
+  }
+}
+
+function renderTrends(items) {
+  document.getElementById('trendsContent').innerHTML = `
+    <div class="grid-4">
+      ${items.map(t => `
+        <div class="trend-card">
+          <div class="trend-name">${t.name}</div>
+          <div class="trend-desc">${t.description}</div>
+          <div class="trend-example">${t.example}</div>
+        </div>`).join('')}
+    </div>`;
+}
+
+// ============================
+// EXERCISE
+// ============================
+async function loadExercise() {
+  const cacheKey = `exercise_${dateKey}`;
+  const cached = getLS(cacheKey);
+  if (cached) { renderExercise(cached); return; }
+
+  const btn = document.getElementById('exerciseBtn');
+  setLoading(btn, true);
+  document.getElementById('exerciseContent').innerHTML = `<div style="display:flex;align-items:center;gap:10px;color:var(--text-muted);font-size:.88rem;">${spinner()} Подбираю упражнение…</div>`;
+
+  try {
+    const text = await callClaude({
+      prompt: `Придумай одно конкретное творческое упражнение для видеографа и арт-директора. Не теоретическое — практическое, которое можно выполнить сегодня.
+Верни JSON: {"title":"Название упражнения","duration":"15–30 минут","description":"Пошаговое описание упражнения. Что именно делать, как именно — конкретно и образно. 4-6 шагов через перенос строки \\n","goal":"Что это развивает в 1-2 предложениях"}`,
+      maxTokens: 600
+    });
+    const data = parseJSON(text);
+    if (!data || !data.title) throw new Error('Неверный формат');
+    setLS(cacheKey, data);
+    renderExercise(data);
+  } catch (e) {
+    document.getElementById('exerciseContent').innerHTML = errHtml(e.message, 'loadExercise()');
+  } finally {
+    setLoading(btn, false);
+  }
+}
+
+function renderExercise(d) {
+  document.getElementById('exerciseContent').innerHTML = `
+    <div class="card">
+      <div class="exercise-header">
+        <div class="exercise-title">${d.title}</div>
+        <span class="time-badge">⏱ ${d.duration}</span>
+      </div>
+      <div class="exercise-desc">${d.description}</div>
+      <div class="exercise-goal">
+        <div class="exercise-goal-label">Развивает</div>
+        ${d.goal}
+      </div>
+    </div>`;
+}
+
+// ============================
+// CHAT
+// ============================
+let chatHistory = [];
+let chatSending = false;
+
+function scrollChat() {
+  const el = document.getElementById('chatMessages');
+  el.scrollTop = el.scrollHeight;
+}
+
+function renderChatMessages() {
+  const el = document.getElementById('chatMessages');
+  if (chatHistory.length === 0) {
+    el.innerHTML = '<div class="chat-empty">Опиши идею — я помогу её докрутить до концепта для видео, клипа или фэшн-съёмки</div>';
+    return;
+  }
+  el.innerHTML = chatHistory.map(m => {
+    const cls = m.role === 'user' ? 'msg msg-user' : 'msg msg-ai';
+    return `<div class="${cls}">${escapeHtml(m.content)}</div>`;
+  }).join('');
+  scrollChat();
+}
+
+function escapeHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+async function sendChat() {
+  if (chatSending) return;
+  const ta = document.getElementById('chatInput');
+  const text = ta.value.trim();
+  if (!text) return;
+
+  chatHistory.push({ role: 'user', content: text });
+  ta.value = '';
+  ta.style.height = 'auto';
+  renderChatMessages();
+
+  // Show thinking
+  const msgEl = document.getElementById('chatMessages');
+  const thinking = document.createElement('div');
+  thinking.className = 'msg-thinking';
+  thinking.textContent = 'думаю…';
+  msgEl.appendChild(thinking);
+  scrollChat();
+
+  chatSending = true;
+  document.getElementById('chatSendBtn').disabled = true;
+
+  try {
+    const reply = await callClaudeChat(chatHistory, 1500);
+    chatHistory.push({ role: 'assistant', content: reply });
+  } catch (e) {
+    chatHistory.push({ role: 'assistant', content: `Ошибка: ${e.message}` });
+  } finally {
+    chatSending = false;
+    document.getElementById('chatSendBtn').disabled = false;
+    renderChatMessages();
+  }
+}
+
+// Chat textarea auto-resize & Enter handling
+document.getElementById('chatInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    sendChat();
+  }
+});
+
+document.getElementById('chatInput').addEventListener('input', function() {
+  this.style.height = 'auto';
+  this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+});
+
+// ============================
+// TRACKER
+// ============================
+function toggleToday() {
+  const checked = document.getElementById('todayCheck').checked;
+  const doneDays = getLS('doneDays', {});
+  if (checked) {
+    doneDays[dateKey] = true;
+  } else {
+    delete doneDays[dateKey];
+  }
+  setLS('doneDays', doneDays);
+  renderCalendar();
+}
+
+function renderCalendar() {
+  const doneDays = getLS('doneDays', {});
+  const todayStr = dateKey;
+  const y = today.getFullYear();
+  const m = today.getMonth();
+
+  const firstDay = new Date(y, m, 1);
+  const lastDay = new Date(y, m + 1, 0);
+
+  // Monday-first: 0=Mon ... 6=Sun
+  let startDow = firstDay.getDay(); // 0=Sun
+  startDow = startDow === 0 ? 6 : startDow - 1; // convert to Mon-first
+
+  const grid = document.getElementById('calendarGrid');
+  let html = '';
+
+  // Empty cells
+  for (let i = 0; i < startDow; i++) {
+    html += '<div class="cal-day empty"></div>';
+  }
+
+  for (let d = 1; d <= lastDay.getDate(); d++) {
+    const dayKey = `${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const isDone = doneDays[dayKey];
+    const isToday = dayKey === todayStr;
+    const classes = ['cal-day', isDone ? 'done' : '', isToday ? 'today' : ''].filter(Boolean).join(' ');
+    html += `<div class="${classes}">${d}</div>`;
+  }
+
+  grid.innerHTML = html;
+
+  // Set checkbox state
+  document.getElementById('todayCheck').checked = !!doneDays[dateKey];
+}
+
+// ============================
+// LIKES LIBRARY
+// ============================
+let currentFilter = 'all';
+
+function filterLikes(filter, btn) {
+  currentFilter = filter;
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderLikes(filter);
+}
+
+function renderLikes(filter) {
+  const likes = getLS('likes', {});
+  let items = Object.values(likes);
+
+  if (filter !== 'all') {
+    items = items.filter(it => (it.category || '').toLowerCase() === filter);
+  }
+
+  const el = document.getElementById('likesContent');
+  if (items.length === 0) {
+    el.innerHTML = '<div class="likes-placeholder">Лайкните видео в разделе «Насмотренность», чтобы сохранить их здесь</div>';
+    return;
+  }
+
+  el.innerHTML = `<div class="grid-5">
+    ${items.map(it => {
+      const cat = (it.category || '').toLowerCase();
+      const badgeClass = `badge-${cat}`;
+      return `<div class="insight-card">
+        <span class="badge ${badgeClass}">${it.category}</span>
+        <div class="insight-title">${it.title || ''}</div>
+        <div class="insight-brand">${it.brand || ''} ${it.year ? '· ' + it.year : ''}</div>
+        <div class="insight-scenario">${it.scenario || ''}</div>
+        <div class="insight-footer">
+          ${it.url ? `<a class="insight-link" href="${it.url}" target="_blank" rel="noopener">Смотреть →</a>` : '<span></span>'}
+          <button class="like-btn liked" onclick="removeLike('${encodeURIComponent(it.url || it.title)}', this)" title="Убрать лайк">♥</button>
+        </div>
+      </div>`;
+    }).join('')}
+  </div>`;
+}
+
+function removeLike(encodedKey, btn) {
+  const key = decodeURIComponent(encodedKey);
+  const likes = getLS('likes', {});
+  delete likes[key];
+  setLS('likes', likes);
+  renderLikes(currentFilter);
+  // Also refresh insights if rendered
+  const insightsEl = document.getElementById('insightsContent');
+  if (insightsEl.querySelector('.grid-5')) {
+    const cached = getLS(`insights_${dateKey}`);
+    if (cached) renderInsights(cached);
+  }
+}
+
+// ============================
+// INIT ALL
+// ============================
+renderCalendar();
+renderLikes('all');
+loadQuote();
+</script>
+</body>
+</html>
